@@ -26,22 +26,14 @@ library(pkgutils)</pre>
 	<li>Valid the commands by pressing <kbd>Enter</kbd> on your keyboard.</li>
 </ol>
 
-<h2 id="pROC_automatic">2. Automatic installation</h2>
-
-<p>In S+, open the <code class="pROC_menuitem">File</code> and select <code class="pROC_menuitem">Find packages…</code>. Locate pROC in the list and valid the dialog with <code class="pROC_menuitem">OK</code>.</p>
-<p>That's it, pROC is installed! Go directly to the <a href="#pROC_load">step 4: <em style="white-space: nowrap">Loading pROC</em></a>.</p>
-
-<p>If you are running Linux, use the following command:</p>
-<pre>install.packages("pROC")</pre>
-
-<!--h2 id="pROC_manual">3. Manual installation</h2>
+<h2 id="pROC_manual">2. Manual installation</h2>
 <p>If the automatic installation fails, or if you prefer to download an install a version manually, follow the next steps:</p>
 
 <h3 id="pROC_download_pROC">A. Downloading pROC</h3>
 
 <p>Download the "binary" file for your platform and save it in your S+ working directory (<a href="#pROC_getwd">where is it?</a>):</p>
 <ul>
-	<li><a href="http://csan.insightful.com/binary/windows/contrib/8.0/pROC_1.4.4.zip">Windows binary for S+ 8 (from the CSAN)</a></li>
+	<li><a href="http://csan.insightful.com/binary/windows/contrib/8.0/pROC_1.4.4.zip">Windows binary for S+ 8</a></li>
 	<li><a href="files/pROC_1.4.4_S_source.tar.gz">Linux source for S+ 8</a></li>
 </ul>
 
@@ -49,9 +41,9 @@ library(pkgutils)</pre>
 <h3 id="pROC_install">B. Installing pROC</h3>
 
 <p>Go back to the S+ command prompt and type:</p>
-<pre>install.packages("pROC_1.4.4.zip", repos=NULL)</pre> or <pre>install.packages("pROC_1.4.4_S_source.tar.gz", repos=NULL)</pre>
+<pre>install.packages("pROC_1.4.9_S_WIN386.zip", repos=NULL)</pre><p>or</p><pre>install.packages("pROC_1.4.9_S_source.zip", repos=NULL)</pre>
 <p>And valid with <kbd>Enter</kbd>.</p>
-<p>Carefully check the output. A warning about a missing 'lib' argument is OK, however make sure there is no error (denoted "<code>Problem</code>") in the output.</p-->
+<p>Carefully check the output. A warning about a missing 'lib' argument is OK, however make sure there is no error (denoted "<code>Problem</code>") in the output.</p>
 
 <h2 id="pROC_load">3. Loading pROC</h2>
 <p>You need to load the package within S+ to enable pROC. Use the <code class="pROC_menuitem">File</code> menu, item <code class="pROC_menuitem">Load Library…</code> (Windows only), or enter the command:</p>
@@ -61,10 +53,7 @@ library(pkgutils)</pre>
 <p>The package must be loaded each time you start S+. You may put the line above in a file named <code class="pROC_file">S.init</code> in your S+ home directory to have it automatically loaded on startup (see S+ <em>User's Guide</em> chapter 11 for more details).</p>
 
 <h2 id="pROC_update">Updating pROC</h2>
-<p>Open the <code class="pROC_menuitem">File</code> menu, item <code class="pROC_menuitem">Update packages…</code> menu.</p>
-<p>You can also repeat the installation (<a href="#pROC_automatic">step 2: Automatic installation</a> or <a href="#pROC_manual">step 3: Manual installation</a>) to get the latest version of pROC, or enter in the command line:</p>
-<p>Alternatively, you can repeat the installation steps, or type the following command in the prompt to update all your packages:</p>
-<pre>update.packages()</pre>
+<p>Repeat the <a href="#pROC_manual">Manual installation steps described above</a> except the <code>install.pkgutils()</code> command.</p>
 
 	</td>
 	<td>
