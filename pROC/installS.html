@@ -3,16 +3,49 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 <title>pROC: help with S+ installation</title>
-<link href="css/pROC.css" rel="stylesheet" type="text/css">
+<link href="../css/pROC.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <h1>pROC: help with S+ installation</h1>
 
+<div id="deprecation" style="background-color: #ff9966; padding: 5px;">Warning: TIBCO S+ no longer supports packages and discontinued the CSAN. As a result pROC is no longer supported for S+. This page is provided for historical purpose only.</div>
+
+<p>The GUI is available only on the 32 bits version of S+ 8.2 for Windows (Linux / Mac / 64 bits support was never provided by TIBCO).</p>
+
+<ul>
+<li>Version: 1.4.9 (released on January 4th, 2014)</li>
+<li><a href="http://csan.insightful.com/PackageDetails.aspx?Package=pROC">Download from CSAN</a></li>
+<li><a href="http://spotfire.tibco.com/Products/S-Plus-Overview.aspx">Get Spotfire S+ from TIBCO (proprietary)</a></li>
+<li>Direct downloads:
+	<ul>
+	<li><a href="files/pROC_1.4.9_S_source.zip">Source</a></li>
+	<li><a href="files/pROC_1.4.9_S_WIN386.zip">Windows Binary</a></li>
+	<li><a href="files/pROC_1.4.9_S_manual.pdf">Reference manual</a></li>
+	<li><a href="files/pROC_1.4.9_S_help.pdf">GUI help</a></li>
+	</ul>
+</li>
+</ul>
+
+<h2>Installation</h2>
+<p>In the S+ command prompt (in Windows, you can open it from S+ <code class="pROC_menuitem">Window</code> menu, <code class="pROC_menuitem">Commands Window</code> item), type:</p>
+<pre>install.pkgutils()<br>library(pkgutils)</pre>
+<p>Save the installation file (binary for Windows, source for Linux) in your working directory and then type:</p>
+<pre>install.packages("pROC_1.4.9_S_WIN386.zip") # Or for the source version:<br>install.packages("pROC_1.4.9_S_source.zip")</pre>
+<p>After loading from the <code class="pROC_menuitem">File</code> menu, item <code class="pROC_menuitem">Load Library…</code>, a new <code class="pROC_menuitem">ROC curves</code> menu is available in the <code class="pROC_menuitem">Statistics</code> menu. You can also load it with the command</p>
+<pre>library(pROC)</pre>
+<p><a href="installS.html" title="Detailed installation help">More details about installation…</a></p>
+
+<h2>Update</h2>
+<p>Repeat the installation steps described above, except the <code>install.pkgutils()</code> command.</p>
+<p><a href="installS.html#pROC_update" title="Detailed update help">More details about update…</a></p>
+
+
+<h2>Detailed installation instructions</h2>
 <table summary="Table with 2 colums: one for general help and one with tips." class="pROC_table">
 	<tr>
 		<td>
 		
-<h2 id="pROC_prepare">1. Preparing S+ for packages</h2>
+<h3 id="pROC_prepare">1. Preparing S+ for packages</h3>
 
 <p>A few steps are necessary in order to be able to load packages in S+.</p>
 
@@ -26,10 +59,10 @@ library(pkgutils)</pre>
 	<li>Valid the commands by pressing <kbd>Enter</kbd> on your keyboard.</li>
 </ol>
 
-<h2 id="pROC_manual">2. Manual installation</h2>
+<h3 id="pROC_manual">2. Manual installation</h3>
 <p>If the automatic installation fails, or if you prefer to download an install a version manually, follow the next steps:</p>
 
-<h3 id="pROC_download_pROC">A. Downloading pROC</h3>
+<h4 id="pROC_download_pROC">A. Downloading pROC</h4>
 
 <p>Download the "binary" file for your platform and save it in your S+ working directory (<a href="#pROC_getwd">where is it?</a>):</p>
 <ul>
@@ -38,21 +71,21 @@ library(pkgutils)</pre>
 </ul>
 
 <p><a href="#pROC_download">Where did my download go?</a></p>
-<h3 id="pROC_install">B. Installing pROC</h3>
+<h4 id="pROC_install">B. Installing pROC</h4>
 
 <p>Go back to the S+ command prompt and type:</p>
 <pre>install.packages("pROC_1.4.9_S_WIN386.zip", repos=NULL)</pre><p>or</p><pre>install.packages("pROC_1.4.9_S_source.zip", repos=NULL)</pre>
 <p>And valid with <kbd>Enter</kbd>.</p>
 <p>Carefully check the output. A warning about a missing 'lib' argument is OK, however make sure there is no error (denoted "<code>Problem</code>") in the output.</p>
 
-<h2 id="pROC_load">3. Loading pROC</h2>
+<h3 id="pROC_load">3. Loading pROC</h3>
 <p>You need to load the package within S+ to enable pROC. Use the <code class="pROC_menuitem">File</code> menu, item <code class="pROC_menuitem">Load Library…</code> (Windows only), or enter the command:</p>
 <pre>library(pROC)</pre>
 
-<h2 id="pROC_furthercomments">Further comments</h2>
+<h3 id="pROC_furthercomments">Further comments</h3>
 <p>The package must be loaded each time you start S+. You may put the line above in a file named <code class="pROC_file">S.init</code> in your S+ home directory to have it automatically loaded on startup (see S+ <em>User's Guide</em> chapter 11 for more details).</p>
 
-<h2 id="pROC_update">Updating pROC</h2>
+<h3 id="pROC_update">Updating pROC</h3>
 <p>Repeat the <a href="#pROC_manual">Manual installation steps described above</a> except the <code>install.pkgutils()</code> command.</p>
 
 	</td>
