@@ -55,12 +55,20 @@ Find us on:<br>
 <pre>install.packages("pROC")</pre>
 <pre>update.packages() # will install updates to all your packages</pre>
 
+<h2 id="pROC_bugs">Known bugs</h2>
+<p>Please report any bug you may encounter on the <a href="https://github.com/xrobin/pROC/issues">GitHub issue tracker</a>.</p>
+
+<h2 id="pROC_help">Finding help</h2>
+<ul>
+	<li><a href="https://github.com/xrobin/pROC/wiki/FAQ---Frequently-asked-questions">Frequently asked questions</a></li>
+	<li><a href="https://rdrr.io/cran/pROC/man/pROC-package.html">Check the manual</a>, or type <code>?pROC</code> on the R prompt.</li>
+	<li>If you still have questions, <a href="https://stackoverflow.com/questions/tagged/proc-r-package">ask a question on Stack Overflow tagged with <code>proc-r-package</code></a>.</li>
+</ul>
 
 <h2>S+ - Depredcated</h2>
 <p><a href="installS.html">Installation instructions are available for historical purposes.</a></p>
 
-
-<h2 id="pROC_versions">Versions</h2>
+<h2 id="pROC_versions">Version history</h2>
 
 	<dl>
 		<dt>1.18.4 (2023-07-04) (<a href="https://cran.r-project.org/src/contrib/pROC_1.18.4.tar.gz">R</a>)</dt>
@@ -130,64 +138,64 @@ Find us on:<br>
 		<dd>New <code>algorithm = 6</code> (used by default) uses <code>algorithm = 2</code> for numeric data, and <code>algorithm = 3</code> for ordered vectors</dd>
 		<dd>New <code>roc.data.frame</code> method and <code>roc_</code> function for use in pipelines</dd>
 		<dd><code>coords</code> can now returns <code>youden</code> and <code>closest.topleft</code> values (issue #48)</dd>
-		<dd>New 'transpose' argument for 'coords', TRUE by default (issue #54)</dd>
+		<dd>New <code>transpose</code> argument for <code>coords</code>, TRUE by default (issue #54)</dd>
 		<dd>Use text instead of Tcl/Tk progress bar by default (issue #51)</dd>
-		<dd>Fix 'method = "density"' smoothing when called directly from 'roc' (issue #49)</dd>
-		<dd>Renamed 'roc' argument 'n' to 'smooth.n'</dd>
-		<dd>Fixed 'are.paired' ignoring smoothing arguments of 'roc2' with 'return.paired.rocs'</dd>
-		<dd>New 'ret' option "all" in 'coords' (issue #47)</dd>
-		<dd>'drop' in 'coords' now drops the dimension of 'ret' too (#issue 43)</dd>
+		<dd>Fix <code>method = "density"</code> smoothing when called directly from <code>roc</code> (issue #49)</dd>
+		<dd>Renamed <code>roc</code> argument <code>n</code> to <code>smooth.n</code></dd>
+		<dd>Fixed <code>are.paired</code> ignoring smoothing arguments of <code>roc2</code> with <code>return.paired.rocs</code></dd>
+		<dd>New <code>ret</code> option "all" in <code>coords</code> (issue #47)</dd>
+		<dd><code>drop</code> in <code>coords</code> now drops the dimension of <code>ret</code> too (#issue 43)</dd>
 
 		<dt>1.14.0 (2019-03-12) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.14.0.tar.gz">R</a>, <a href="https://xavier.robin.name/en/blog/proc-1.14.0">release notes</a>)</dt>
-		<dd>The 'multiclass.roc' function now accepts multivariate decision values (code contributed by Matthias Döring)</dd>
-		<dd>'ggroc' supports multiple aesthetics (issue #42)</dd>
-		<dd>Make 'ggplot2' dependency optional</dd>
+		<dd>The <code>multiclass.roc</code> function now accepts multivariate decision values (code contributed by Matthias Döring)</dd>
+		<dd><code>ggroc</code> supports multiple aesthetics (issue #42)</dd>
+		<dd>Make <code>ggplot2</code> dependency optional</dd>
 		<dd>CSuggested packages can be installed interactively when required</dd>
-		<dd>Passing both 'cases' and 'controls' or 'response' and 'predictor' arguments is now an error</dd>
+		<dd>Passing both <code>cases</code> and <code>controls</code> or <code>response</code> and <code>predictor</code> arguments is now an error</dd>
 		<dd>Many small bug fixes</dd>
 
 		<dt>1.13.0 (2018-09-23) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.13.0.tar.gz">R</a>, <a href="https://xavier.robin.name/en/blog/proc-1.13.0">release notes</a>)</dt>
-		<dd>'roc' now returns 'NaN' when predictor contains infinite values (issue #30)</dd>
+		<dd><code>roc</code> now returns <code>NaN</code> when predictor contains infinite values (issue #30)</dd>
 		<dd>Better handling of near-ties near +-Infinity and 0</dd>
-		<dd>'ggroc' supports aes="group" to allow curves with identical aesthetics</dd>
+		<dd><code>ggroc</code> supports aes="group" to allow curves with identical aesthetics</dd>
 
 		<dt>1.12.1 (2018-05-06) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.12.1.tar.gz">R</a>, <a href="https://xavier.robin.name/en/blog/proc-1.12.1">release notes</a>)</dt>
 		<dd>Fix a regression causing the allocation of a very large vector (issue #29)</dd>
 
 		<dt>1.12.0 (2018-05-05) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.12.0.tar.gz">R</a>, <a href="https://xavier.robin.name/en/blog/proc-1.12.0">release notes</a>)</dt>
 		<dd>Fix bug that crashed DeLong calculations when predictor had near-ties close to the floating point precision limit that were rounded back to a predictor value (issue #25)</dd>
-		<dd>Fix bug that crashed 'ci.auc' and 'var' if 'direction' was ">" and 'percent=TRUE' (issue #25)</dd>
-		<dd>Fix bug causing 'ci' to return 'NaN' values with 'method="delong"' when cases or controls had a single observation (issue #27)</dd>
-		<dd>Fix 'power.roc.curve' failed with curves having 'percent=TRUE'</dd>
-		<dd>Fix 'ci(..., of="coords")' returned the 'ci' function instead of the CI</dd>
+		<dd>Fix bug that crashed <code>ci.auc</code> and <code>var</code> if <code>direction</code> was ">" and <code>percent=TRUE</code> (issue #25)</dd>
+		<dd>Fix bug causing <code>ci</code> to return <code>NaN</code> values with <code>method="delong"</code> when cases or controls had a single observation (issue #27)</dd>
+		<dd>Fix <code>power.roc.curve</code> failed with curves having <code>percent=TRUE</code></dd>
+		<dd>Fix <code>ci(..., of="coords")</code> returned the <code>ci</code> function instead of the CI</dd>
 		<dd>C++ code now check for user interrupts regularly with Rcpp::checkUserInterrupt()</dd>
-		<dd>Better error message for 'ci.coords' attempting to return 'threshold'</dd>
+		<dd>Better error message for <code>ci.coords</code> attempting to return <code>threshold</code></dd>
 		<dd>New algorithm = 5 (used by default) chooses the algorithm based on the number of thresholds to avoid worst case with algorithm = 3</dd>
 
 		<dt>1.11.0 (2018-03-24) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.11.0.tar.gz">R</a>, <a href="https://xavier.robin.name/en/blog/proc-1.11.0">release notes</a>)</dt>
-		<dd>Added argument 'legacy.axes' to 'ggroc'</dd>
-		<dd>Fix NOTE about 'apparent S3 methods exported but not registered' in 'R CMD check'</dd>
+		<dd>Added argument <code>legacy.axes</code> to <code>ggroc</code></dd>
+		<dd>Fix NOTE about <code>apparent S3 methods exported but not registered</code> in <code>R CMD check</code></dd>
 
 		<dt>1.10.0 (2017-06-10) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.10.0.tar.gz">R</a>, <a href="https://xavier.robin.name/en/blog/proc-1.10.0">release notes</a>)</dt>
 		<dd>Basic ggplot2 support (one and multiple ROC curves)</dd>
-		<dd>Implement 'precision' and 'recall' for 'coords'</dd>
-		<dd>Fix: properly handle NAs in cases when passing cases/controls to 'roc' (thanks Thomas König for the report)</dd>
+		<dd>Implement <code>precision</code> and <code>recall</code> for <code>coords</code></dd>
+		<dd>Fix: properly handle NAs in cases when passing cases/controls to <code>roc</code> (thanks Thomas König for the report)</dd>
 		<dd>Fix various minor bugs detected with new unit tests</dd>
   
  		<dt>1.9.1 (2017-02-05) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.9.1.tar.gz">R</a>, <a href="https://xavier.robin.name/en/blog/proc-1.9.1">release notes</a>)</dt>
-		<dd>Fix: 'subset' and 'na.action' arguments now handled properly in 'roc.formula' (thanks Terry Therneau for the report)</dd>
-		<dd>Added policies to handle the case where a ROC curve has multiple "best" threshold in 'ci' (thanks Nicola Toschi for the report)</dd>
-		<dd>Support 'xlim' and 'ylim' gracefully in 'plot.roc'</dd>
-		<dd>Improved validation of input class 'levels' and 'direction'; messages when auto-detecting, use 'quiet' to turn on</dd>
-		<dd>Removed extraneous 'name' attribute on the 'p.value' (thanks Paweł Kleka for the report)</dd>
+		<dd>Fix: <code>subset</code> and <code>na.action</code> arguments now handled properly in <code>roc.formula</code> (thanks Terry Therneau for the report)</dd>
+		<dd>Added policies to handle the case where a ROC curve has multiple "best" threshold in <code>ci</code> (thanks Nicola Toschi for the report)</dd>
+		<dd>Support <code>xlim</code> and <code>ylim</code> gracefully in <code>plot.roc</code></dd>
+		<dd>Improved validation of input class <code>levels</code> and <code>direction</code>; messages when auto-detecting, use <code>quiet</code> to turn on</dd>
+		<dd>Removed extraneous <code>name</code> attribute on the <code>p.value</code> (thanks Paweł Kleka for the report)</dd>
 		<dd>Faster DeLong algorithm (code contributed by Stefan Siegert)</dd>
 
 		<dt>1.8 (2015-05-04) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.8.tar.gz">R</a>)</dt>
 		<dd>NAMESPACE now properly exports the methods as S3 methods.</dd>
-		<dd>Now uses and works with 'requireNamespace'</dd>
+		<dd>Now uses and works with <code>requireNamespace</code></dd>
 		<dd>Add ability to supply two ordered factors with identical levels as control / cases</dd>
 		<dd>Deprecate dangerous use of a matrix as response / predictor with a warning</dd>
-		<dd>Forward 'best.method' and 'best.weights' arguments to 'coords' in 'ci.thresholds'</dd>
+		<dd>Forward <code>best.method</code> and <code>best.weights</code> arguments to <code>coords</code> in <code>ci.thresholds</code></dd>
 		<dd>Fix CITATION file as per CRAN request</dd>
 		<dd>pAUC correction is undefined for partial AUC below the diagonal (result < 0.5) and now returns NA (with a warning). Thanks Vincenzo Lagani for the report.</dd>
 
@@ -222,7 +230,7 @@ Find us on:<br>
 		<dd>New <code>cov</code> and <code>var</code> functions supports new <code>"obuchowski"</code> method.</dd>
 		<dd>New <code>ci.coords</code> function to compute CI of arbitrary coords.</dd>
 		<dd><code>coords</code> accepts new <code>ret</code> value "1-accuracy".</dd>
-		<dd>Introducing various algorithms to compute sensitivities and specificites, with a more vectorized code or Rcpp. See 'algorithm' in <code>?roc</code> for more details on the trade-offs of the different methods.</dd>
+		<dd>Introducing various algorithms to compute sensitivities and specificites, with a more vectorized code or Rcpp. See <code>algorithm</code> in <code>?roc</code> for more details on the trade-offs of the different methods.</dd>
 		<dd>Faster algorithm for DeLong <code>roc.test</code>, <code>ci</code>, <code>var</code> and </code>cov</code> function (thanks Kazuki Yoshida).</dd>
 		<dd><code>are.paired</code> now also checks for identical <code>levels</code>.</dd>
 		<dd>Fixed a warning generated in the examples.</dd>
@@ -235,7 +243,7 @@ Find us on:<br>
 		<dd>Running less smooth.roc examples with logcondens because they take too much time (requested by Uwe Ligges).</dd>
 
 		<dt>1.5.3 (2011-08-31) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.5.3.tar.gz">R</a>, <a href="http://xavier.robin.name/blog/2011/12/12/proc-1.5.3-released">release notes</a>)</dt>
-			<dd>AUC specification was lost when <code>roc.test</code>, <code>cov</code> or <code>var</code> was passed an <code>auc</code>' object.
+			<dd>AUC specification was lost when <code>roc.test</code>, <code>cov</code> or <code>var</code> was passed an <code>auc</code> object.
 			<dd>Correct computation of "accuracy" in <code>coords</code> (thanks to Kosuke Yoshihara for the report).</dd>
 
 		<dt>1.5.1 (2011-03-09) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.5.1.tar.gz">R</a>, <a href="http://xavier.robin.name/blog/2011/03/09/proc-1.5.1-released">release notes</a>)</dt>
@@ -330,17 +338,6 @@ Find us on:<br>
 		<dt>1.0 (2010-04-27) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.0.tar.gz">R</a>, <a href="archives/pROC_1.0_S_source.zip">S+</a>, <a href="http://xavier.robin.name/blog/2010/04/27/proc-1.0-released">release notes</a>)</dt>
 			<dd>First public release.</dd>
 	</dl>
-
-
-<h2 id="pROC_bugs">Known bugs</h2>
-<p>Please report any bug you may encounter on the <a href="https://github.com/xrobin/pROC/issues">GitHub issue tracker</a>.</p>
-
-<h2 id="pROC_help">Finding help</h2>
-<ul>
-	<li><a href="https://github.com/xrobin/pROC/wiki/FAQ---Frequently-asked-questions">Frequently asked questions</a></li>
-	<li><a href="https://cran.r-project.org/web/packages/pROC/pROC.pdf">Check the PDF manual</a>, or type <code>?pROC</code> on the R prompt.</li>
-	<li>If you still have questions, <a href="https://stackoverflow.com/questions/tagged/proc-r-package">ask a question on Stack Overflow tagged with <code>proc-r-package</code></a>.</li>
-</ul>
 
 <h2 id="pROC_references">References</h2>
 <ul>
