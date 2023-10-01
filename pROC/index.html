@@ -75,34 +75,34 @@ Find us on:<br>
 		<dd>Fix broken <code>legacy.axes</code> in <code>ggroc</code></dd>
 
 		<dt>1.18.3 (2023-07-02)</dt>
-		<dd>Fix warning about 'aes_string' in 'ggroc'</dd>
-		<dd>Improvements in tests (thanks to Michael Chirico, pr #114, #115)</dd>
+		<dd>Fix warning about <code>aes_string</code> in <code>ggroc</code></dd>
+		<dd>Improvements in tests (thanks to Michael Chirico, <a href="https://github.com/xrobin/pROC/pull/114">pr #114</a>, <a href="https://github.com/xrobin/pROC/pull/114">#115</a>)</dd>
 		<dd>Fix upcoming CRAN warning about numeric version comparisons</dd>
 
 		<dt>1.18.2 (2023-05-13) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.18.2.tar.gz">R</a>)</dt>
-		<dd>Fix CRAN submission NOTE (issue #112)</dd>
+		<dd>Fix CRAN submission NOTE (<a href="https://github.com/xrobin/pROC/issues/112">issue #112</a>)</dd>
 
 		<dt>1.18.1 (2023-05-07)</dt>
-		<dd>Fix <code>print</code>ing some curves built from a formula (issue #101)
-		<dd>Fix tests following upstream updates in density() (https://bugs.r-project.org/show_bug.cgi?id=18337)
-		<dd>Improvements in documentation
+		<dd>Fix <code>print</code>ing some curves built from a formula (<a href="https://github.com/xrobin/pROC/issues/101">issue #101</a>)</dd>
+		<dd>Fix tests following <a href="https://bugs.r-project.org/show_bug.cgi?id=18337">upstream updates in density()</a></dd>
+		<dd>Improvements in documentation</dd>
 
 		<dt>1.18.0 (2021-09-02) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.18.0.tar.gz">R</a>, <a href="https://xavier.robin.name/en/blog/proc-1.18.0">release notes</a>)</dt>
-		<dd>Add CI of the estimate for <code>roc.test</code> (DeLong, paired only for now) (code contributed by Zane Billings) (pr #95) </dd>
-		<dd>Fix documentation and alternative hypothesis for Venkatraman test (issue #92)</dd>
+		<dd>Add CI of the estimate for <code>roc.test</code> (DeLong, paired only for now) (code contributed by Zane Billings) (<a href="https://github.com/xrobin/pROC/pull/95">pr #95</a>) </dd>
+		<dd>Fix documentation and alternative hypothesis for Venkatraman test (<a href="https://github.com/xrobin/pROC/issues/92">issue #92</a>)</dd>
 
 		<dt>1.17.0.1 (2021-01-07) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.17.0.1.tar.gz">R</a>, <a href="https://xavier.robin.name/en/blog/proc-1.17.0.1">release notes</a>)</dt>
 		<dd>Fix CRAN incoming checks as requested by CRAN</dd>
 
 		<dt>1.17.0 (2020-12-29)</dt>
-		<dd>Accept more values in <code>input</code> of coords (issue #67)</dd>
-		<dd>Accept <code>kappa</code> for the <code>power.roc.test</code> of two ROC curves (issue #82)</dd>
+		<dd>Accept more values in <code>input</code> of coords (<a href="https://github.com/xrobin/pROC/issues/67">issue #67</a>)</dd>
+		<dd>Accept <code>kappa</code> for the <code>power.roc.test</code> of two ROC curves (<a href="https://github.com/xrobin/pROC/issues/82">issue #82</a>)</dd>
 		<dd>The <code>input</code> argument to <code>coords</code> for <code>smooth.roc</code> curves no longer has a default</dd>
 		<dd>The <code>x</code> argument to <code>coords</code> for <code>smooth.roc</code> can now be set to <code>all</code> (also the default)</dd>
 		<dd>Fix bootstrap roc.test and cov with <code>smooth.roc</code> curves</dd>
-		<dd>The <code>ggroc</code> function can now plot <code>smooth.roc</code> curves (issue #86)</dd>
-		<dd>Remove warnings with <code>warnPartialMatchDollar</code> option (issue #87)</dd>
-		<dd>Make tests depending on vdiffr conditional (issue #88)</dd>
+		<dd>The <code>ggroc</code> function can now plot <code>smooth.roc</code> curves (<a href="https://github.com/xrobin/pROC/issues/86">issue #86</a>)</dd>
+		<dd>Remove warnings with <code>warnPartialMatchDollar</code> option (<a href="https://github.com/xrobin/pROC/issues/87">issue #87</a>)</dd>
+		<dd>Make tests depending on vdiffr conditional (<a href="https://github.com/xrobin/pROC/issues/88">issue #88</a>)</dd>
 
 		<dt>1.16.2 (2020-03-19) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.16.2.tar.gz">R</a>)</dt>
 		<dd>Skip test depending on Rcpp version</dd>
@@ -111,61 +111,61 @@ Find us on:<br>
 		<dd>Skip timing-dependent test failing occasionally on CRAN</dd>
 
 		<dt>1.16.0 (2020-01-12) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.16.0.tar.gz">R</a>, <a href="https://xavier.robin.name/en/blog/proc-1.16.0">release notes</a>)</dt>
-		<dd>BACKWARD INCOMPATIBLE CHANGE: <code>transpose</code> argument to <code>coords</code> switched to FALSE by default (issue #54)</dd>
+		<dd>BACKWARD INCOMPATIBLE CHANGE: <code>transpose</code> argument to <code>coords</code> switched to FALSE by default (<a href="https://github.com/xrobin/pROC/issues/54">issue #54</a>)</dd>
 		<dd>BACKWARD INCOMPATIBLE CHANGE: <code>ci.coords</code> return value is now of list type and easier to use</dd>
-		<dd>Fix one-sided DeLong test for curves with <code>direction=">"</code> (issue #64)</dd>
-		<dd>Fix an error in <code>ci.coords</code> due to expected NA values in some coords (like "precision") (issue #65)</dd>
-		<dd>Ordrered predictors are converted to numeric in a more robust way (issue #63)</dd>
-		<dd>Cleaned up <code>power.roc.test</code> code (issue #50)</dd>
-		<dd>Fix pairing with <code>roc.formula</code> and warn if <code>na.action</code> is not set to "na.pass" or "na.fail" (issue #68)</dd>
+		<dd>Fix one-sided DeLong test for curves with <code>direction=">"</code> (<a href="https://github.com/xrobin/pROC/issues/64">issue #64</a>)</dd>
+		<dd>Fix an error in <code>ci.coords</code> due to expected NA values in some coords (like "precision") (<a href="https://github.com/xrobin/pROC/issues/65">issue #65</a>)</dd>
+		<dd>Ordrered predictors are converted to numeric in a more robust way (<a href="https://github.com/xrobin/pROC/issues/63">issue #63</a>)</dd>
+		<dd>Cleaned up <code>power.roc.test</code> code (<a href="https://github.com/xrobin/pROC/issues/50">issue #50</a>)</dd>
+		<dd>Fix pairing with <code>roc.formula</code> and warn if <code>na.action</code> is not set to "na.pass" or "na.fail" (<a href="https://github.com/xrobin/pROC/issues/68">issue #68</a>)</dd>
 		<dd>Fix <code>ci.coords</code> not working with <code>smooth.roc</code> curves</dd>
   
 		<dt>1.15.3 (2019-07-21) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.15.3.tar.gz">R</a>, <a href="https://xavier.robin.name/en/blog/proc-1.15.3">release notes</a>)</dt>
 		<dd>Fix: previous version accidentally set transpose = FALSE, should only be for next major release</dd>
 
 		<dt>1.15.2 (2019-07-20)</dt>
-		<dd>Fix -Inf threshold in coords for curves with <code>direction = ">"</code> (issue #60)</dd>
+		<dd>Fix -Inf threshold in coords for curves with <code>direction = ">"</code> (<a href="https://github.com/xrobin/pROC/issues/60">issue #60</a>)</dd>
 		<dd>Restore lazy loading of the data and fix an <code>R CMD check</code> warning "Variables with usage in documentation object <code>aSAH</code> not in code"</dd>
 
 		<dt>1.15.1 (2019-07-17)</dt>
-		<dd>Fix erroneous error in <code>ci.coords</code> with <code>ret="threshold"</code> (issue #57)</dd>
-		<dd>Fix vdiffr unit tests with ggplot2 3.2.0 (issue #53)</dd>
-		<dd>Keep list order in <code>ggroc</code> (issue #58)</dd>
+		<dd>Fix erroneous error in <code>ci.coords</code> with <code>ret="threshold"</code> (<a href="https://github.com/xrobin/pROC/issues/57">issue #57</a>)</dd>
+		<dd>Fix vdiffr unit tests with ggplot2 3.2.0 (<a href="https://github.com/xrobin/pROC/issues/53">issue #53</a>)</dd>
+		<dd>Keep list order in <code>ggroc</code> (<a href="https://github.com/xrobin/pROC/issues/58">issue #58</a>)</dd>
 
 		<dt>1.15.0 (2019-06-01) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.15.0.tar.gz">R</a>, <a href="https://xavier.robin.name/en/blog/proc-1.15.0">release notes</a>)</dt>
 		<dd><code>roc</code> now prints messages when autodetecting <code>levels</code> and <code>direction</code> by default. Turn off with <code>quiet = TRUE</code> or set these values explicitly</dd>
-		<dd>Speedup with <code>algorithm = 2</code> (issue #44) and in <code>coords</code> (issue #52)</dd>
+		<dd>Speedup with <code>algorithm = 2</code> (<a href="https://github.com/xrobin/pROC/issues/44">issue #44</a>) and in <code>coords</code> (<a href="https://github.com/xrobin/pROC/issues/52">issue #52</a>)</dd>
 		<dd>New <code>algorithm = 6</code> (used by default) uses <code>algorithm = 2</code> for numeric data, and <code>algorithm = 3</code> for ordered vectors</dd>
 		<dd>New <code>roc.data.frame</code> method and <code>roc_</code> function for use in pipelines</dd>
-		<dd><code>coords</code> can now returns <code>youden</code> and <code>closest.topleft</code> values (issue #48)</dd>
-		<dd>New <code>transpose</code> argument for <code>coords</code>, TRUE by default (issue #54)</dd>
-		<dd>Use text instead of Tcl/Tk progress bar by default (issue #51)</dd>
-		<dd>Fix <code>method = "density"</code> smoothing when called directly from <code>roc</code> (issue #49)</dd>
+		<dd><code>coords</code> can now returns <code>youden</code> and <code>closest.topleft</code> values (<a href="https://github.com/xrobin/pROC/issues/48">issue #48</a>)</dd>
+		<dd>New <code>transpose</code> argument for <code>coords</code>, TRUE by default (<a href="https://github.com/xrobin/pROC/issues/54">issue #54</a>)</dd>
+		<dd>Use text instead of Tcl/Tk progress bar by default (<a href="https://github.com/xrobin/pROC/issues/51">issue #51</a>)</dd>
+		<dd>Fix <code>method = "density"</code> smoothing when called directly from <code>roc</code> (<a href="https://github.com/xrobin/pROC/issues/49">issue #49</a>)</dd>
 		<dd>Renamed <code>roc</code> argument <code>n</code> to <code>smooth.n</code></dd>
 		<dd>Fixed <code>are.paired</code> ignoring smoothing arguments of <code>roc2</code> with <code>return.paired.rocs</code></dd>
-		<dd>New <code>ret</code> option "all" in <code>coords</code> (issue #47)</dd>
+		<dd>New <code>ret</code> option "all" in <code>coords</code> (<a href="https://github.com/xrobin/pROC/issues/47">issue #47</a>)</dd>
 		<dd><code>drop</code> in <code>coords</code> now drops the dimension of <code>ret</code> too (#issue 43)</dd>
 
 		<dt>1.14.0 (2019-03-12) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.14.0.tar.gz">R</a>, <a href="https://xavier.robin.name/en/blog/proc-1.14.0">release notes</a>)</dt>
 		<dd>The <code>multiclass.roc</code> function now accepts multivariate decision values (code contributed by Matthias Döring)</dd>
-		<dd><code>ggroc</code> supports multiple aesthetics (issue #42)</dd>
+		<dd><code>ggroc</code> supports multiple aesthetics (<a href="https://github.com/xrobin/pROC/issues/42">issue #42</a>)</dd>
 		<dd>Make <code>ggplot2</code> dependency optional</dd>
 		<dd>CSuggested packages can be installed interactively when required</dd>
 		<dd>Passing both <code>cases</code> and <code>controls</code> or <code>response</code> and <code>predictor</code> arguments is now an error</dd>
 		<dd>Many small bug fixes</dd>
 
 		<dt>1.13.0 (2018-09-23) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.13.0.tar.gz">R</a>, <a href="https://xavier.robin.name/en/blog/proc-1.13.0">release notes</a>)</dt>
-		<dd><code>roc</code> now returns <code>NaN</code> when predictor contains infinite values (issue #30)</dd>
+		<dd><code>roc</code> now returns <code>NaN</code> when predictor contains infinite values (<a href="https://github.com/xrobin/pROC/issues/30">issue #30</a>)</dd>
 		<dd>Better handling of near-ties near +-Infinity and 0</dd>
 		<dd><code>ggroc</code> supports aes="group" to allow curves with identical aesthetics</dd>
 
 		<dt>1.12.1 (2018-05-06) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.12.1.tar.gz">R</a>, <a href="https://xavier.robin.name/en/blog/proc-1.12.1">release notes</a>)</dt>
-		<dd>Fix a regression causing the allocation of a very large vector (issue #29)</dd>
+		<dd>Fix a regression causing the allocation of a very large vector (<a href="https://github.com/xrobin/pROC/issues/29">issue #29</a>)</dd>
 
 		<dt>1.12.0 (2018-05-05) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.12.0.tar.gz">R</a>, <a href="https://xavier.robin.name/en/blog/proc-1.12.0">release notes</a>)</dt>
-		<dd>Fix bug that crashed DeLong calculations when predictor had near-ties close to the floating point precision limit that were rounded back to a predictor value (issue #25)</dd>
-		<dd>Fix bug that crashed <code>ci.auc</code> and <code>var</code> if <code>direction</code> was ">" and <code>percent=TRUE</code> (issue #25)</dd>
-		<dd>Fix bug causing <code>ci</code> to return <code>NaN</code> values with <code>method="delong"</code> when cases or controls had a single observation (issue #27)</dd>
+		<dd>Fix bug that crashed DeLong calculations when predictor had near-ties close to the floating point precision limit that were rounded back to a predictor value (<a href="https://github.com/xrobin/pROC/issues/25">issue #25</a>)</dd>
+		<dd>Fix bug that crashed <code>ci.auc</code> and <code>var</code> if <code>direction</code> was ">" and <code>percent=TRUE</code> (<a href="https://github.com/xrobin/pROC/issues/25">issue #25</a>)</dd>
+		<dd>Fix bug causing <code>ci</code> to return <code>NaN</code> values with <code>method="delong"</code> when cases or controls had a single observation (<a href="https://github.com/xrobin/pROC/issues/27">issue #27</a>)</dd>
 		<dd>Fix <code>power.roc.curve</code> failed with curves having <code>percent=TRUE</code></dd>
 		<dd>Fix <code>ci(..., of="coords")</code> returned the <code>ci</code> function instead of the CI</dd>
 		<dd>C++ code now check for user interrupts regularly with Rcpp::checkUserInterrupt()</dd>
@@ -243,7 +243,7 @@ Find us on:<br>
 		<dd>Running less smooth.roc examples with logcondens because they take too much time (requested by Uwe Ligges).</dd>
 
 		<dt>1.5.3 (2011-08-31) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.5.3.tar.gz">R</a>, <a href="http://xavier.robin.name/blog/2011/12/12/proc-1.5.3-released">release notes</a>)</dt>
-			<dd>AUC specification was lost when <code>roc.test</code>, <code>cov</code> or <code>var</code> was passed an <code>auc</code> object.
+			<dd>AUC specification was lost when <code>roc.test</code>, <code>cov</code> or <code>var</code> was passed an <code>auc</code> object.</dd>
 			<dd>Correct computation of "accuracy" in <code>coords</code> (thanks to Kosuke Yoshihara for the report).</dd>
 
 		<dt>1.5.1 (2011-03-09) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.5.1.tar.gz">R</a>, <a href="http://xavier.robin.name/blog/2011/03/09/proc-1.5.1-released">release notes</a>)</dt>
