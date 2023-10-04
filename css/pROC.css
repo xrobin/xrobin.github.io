@@ -144,13 +144,3 @@ dd#pROC_versions {
 	max-width:100%;
 	border:0;
 }
-
-/* Style of the social bar */
-#social {
-	float:right;
-	width: 150px;
-	opacity:.5;
-}
-#social:hover {
-	opacity:1;
-}
