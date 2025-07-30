@@ -32,6 +32,55 @@
         }
     }
 
+    function copyCodeToClipboard(preEltId, event) {
+        // Stop event propagation to prevent the card click from triggering
+        if (event) {
+            event.stopPropagation();
+        }
+        
+        var preElt = document.getElementById(preEltId);
+        var text = preElt.textContent || preElt.innerText;
+        
+        // Remove leading and trailing whitespace, and normalize line endings
+        text = text.trim().replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+        
+        // Create a temporary textarea to copy the text
+        var textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        
+        try {
+            document.execCommand('copy');
+            // Show feedback (optional)
+            var button = document.querySelector('[onclick="copyCodeToClipboard(\'' + preEltId + '\', event)"]');
+            if (button) {
+                // Clear any existing timeout
+                if (button.timeoutId) {
+                    clearTimeout(button.timeoutId);
+                }
+                
+                // Store the original copy icon HTML
+                var originalHTML = '<svg class="copy-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>';
+                
+                // Show checkmark
+                button.innerHTML = '<svg class="copy-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>';
+                
+                // Set timeout to restore copy icon
+                button.timeoutId = setTimeout(function() {
+                    button.innerHTML = originalHTML;
+                    button.timeoutId = null;
+                }, 1000);
+            }
+        } catch (err) {
+            console.error('Failed to copy: ', err);
+        }
+        
+        document.body.removeChild(textarea);
+    }
+
     // Add event listeners when DOM is loaded
     document.addEventListener('DOMContentLoaded', function() {
         var cards = document.querySelectorAll('.screenshot-card');
@@ -43,8 +92,8 @@
             if (button && preElement) {
                 // Make entire card clickable to toggle button
                 card.addEventListener('click', function(e) {
-                    // Don't trigger if clicking the button itself or the code block
-                    if (e.target !== button && !e.target.closest('.code-block')) {
+                    // Don't trigger if clicking the button itself, the code block, or the copy button
+                    if (e.target !== button && !e.target.closest('.copy-button') && !e.target.closest('.code-block')) {
                         e.preventDefault();
                         button.click();
                     }
@@ -71,7 +120,11 @@
                 <div class="screenshot-content">
                     <button class="btn btn-outline toggle-code" onclick="toggleShowCode('pROC_pAUC')">Show/hide code</button>
                     <pre id="pROC_pAUC" class="code-block">
-library(pROC)
+<button class="copy-button" onclick="copyCodeToClipboard('pROC_pAUC', event)" title="Copy code">
+    <svg class="copy-icon" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+    </svg>
+</button>library(pROC)
 data(aSAH)
 
 plot.roc(aSAH$outcome, aSAH$s100b, # data
@@ -89,8 +142,7 @@ plot.roc(aSAH$outcome, aSAH$s100b,
          print.auc=TRUE, print.auc.pattern="Corrected pAUC (100-90%% SE):\n%.1f%%", print.auc.col="#008600",
          print.auc.y=40, # do not print auc over the previous one
          auc.polygon=TRUE, auc.polygon.col="#008600",
-         max.auc.polygon=TRUE, max.auc.polygon.col="#00860022")
-                    </pre>
+         max.auc.polygon=TRUE, max.auc.polygon.col="#00860022")</pre>
                 </div>
             </div>
 
@@ -99,7 +151,11 @@ plot.roc(aSAH$outcome, aSAH$s100b,
                 <div class="screenshot-content">
                     <button class="btn btn-outline toggle-code" onclick="toggleShowCode('pROC_CI')">Show/hide code</button>
                     <pre id="pROC_CI" class="code-block">
-library(pROC)
+<button class="copy-button" onclick="copyCodeToClipboard('pROC_CI', event)" title="Copy code">
+    <svg class="copy-icon" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+    </svg>
+</button>library(pROC)
 data(aSAH)
 
 rocobj &lt;- plot.roc(aSAH$outcome, aSAH$s100b,
@@ -109,8 +165,7 @@ rocobj &lt;- plot.roc(aSAH$outcome, aSAH$s100b,
 ciobj &lt;- ci.se(rocobj, # CI of sensitivity
                specificities=seq(0, 100, 5)) # over a select set of specificities
 plot(ciobj, type="shape", col="#1c61b6AA") # plot as a blue shape
-plot(ci(rocobj, of="thresholds", thresholds="best")) # add one threshold
-                    </pre>
+plot(ci(rocobj, of="thresholds", thresholds="best")) # add one threshold</pre>
                 </div>
             </div>
 
@@ -119,7 +174,11 @@ plot(ci(rocobj, of="thresholds", thresholds="best")) # add one threshold
                 <div class="screenshot-content">
                     <button class="btn btn-outline toggle-code" onclick="toggleShowCode('pROC_smoothing')">Show/hide code</button>
                     <pre id="pROC_smoothing" class="code-block">
-library(pROC)
+<button class="copy-button" onclick="copyCodeToClipboard('pROC_smoothing', event)" title="Copy code">
+    <svg class="copy-icon" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+    </svg>
+</button>library(pROC)
 data(aSAH)
 
 rocobj &lt;- plot.roc(aSAH$outcome, aSAH$s100b, percent = TRUE, main="Smoothing")
@@ -130,8 +189,7 @@ lines(smooth(rocobj, method = "density"), # density smoothing
 lines(smooth(rocobj, method = "fitdistr", # fit a distribution
              density = "lognormal"), # let the distribution be log-normal
       col = "#840000")
-legend("bottomright", legend = c("Empirical", "Binormal", "Density", "Fitdistr\n(Log-normal)"), col = c("black", "#1c61b6", "#008600", "#840000"),lwd = 2)
-                    </pre>
+legend("bottomright", legend = c("Empirical", "Binormal", "Density", "Fitdistr\n(Log-normal)"), col = c("black", "#1c61b6", "#008600", "#840000"),lwd = 2)</pre>
                 </div>
             </div>
 
@@ -140,7 +198,11 @@ legend("bottomright", legend = c("Empirical", "Binormal", "Density", "Fitdistr\n
                 <div class="screenshot-content">
                     <button class="btn btn-outline toggle-code" onclick="toggleShowCode('pROC_CI.sesp')">Show/hide code</button>
                     <pre id="pROC_CI.sesp" class="code-block">
-library(pROC)
+<button class="copy-button" onclick="copyCodeToClipboard('pROC_CI.sesp', event)" title="Copy code">
+    <svg class="copy-icon" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+    </svg>
+</button>library(pROC)
 data(aSAH)
 
 rocobj &lt;- plot.roc(aSAH$outcome, aSAH$s100b,
@@ -149,8 +211,7 @@ rocobj &lt;- plot.roc(aSAH$outcome, aSAH$s100b,
                    specificities=seq(0, 100, 5), # on a select set of specificities
                    ci.type="shape", ci.col="#1c61b6AA") # plot the CI as a blue shape
 plot(ci.sp(rocobj, sensitivities=seq(0, 100, 5)), # ci of specificity
-     type="bars") # print this one as bars
-                    </pre>
+     type="bars") # print this one as bars</pre>
                 </div>
             </div>
 
@@ -159,15 +220,18 @@ plot(ci.sp(rocobj, sensitivities=seq(0, 100, 5)), # ci of specificity
                 <div class="screenshot-content">
                     <button class="btn btn-outline toggle-code" onclick="toggleShowCode('pROC_CI.thres')">Show/hide code</button>
                     <pre id="pROC_CI.thres" class="code-block">
-library(pROC)
+<button class="copy-button" onclick="copyCodeToClipboard('pROC_CI.thres', event)" title="Copy code">
+    <svg class="copy-icon" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+    </svg>
+</button>library(pROC)
 data(aSAH)
 
 plot.roc(aSAH$outcome, aSAH$s100b,
          main="Confidence interval of a threshold", percent=TRUE,
          ci=TRUE, of="thresholds", # compute AUC (of threshold)
          thresholds="best", # select the (best) threshold
-         print.thres="best") # also highlight this threshold on the plot
-                    </pre>
+         print.thres="best") # also highlight this threshold on the plot</pre>
                 </div>
             </div>
 
@@ -176,7 +240,11 @@ plot.roc(aSAH$outcome, aSAH$s100b,
                 <div class="screenshot-content">
                     <button class="btn btn-outline toggle-code" onclick="toggleShowCode('pROC_comparison')">Show/hide code</button>
                     <pre id="pROC_comparison" class="code-block">
-library(pROC)
+<button class="copy-button" onclick="copyCodeToClipboard('pROC_comparison', event)" title="Copy code">
+    <svg class="copy-icon" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+    </svg>
+</button>library(pROC)
 data(aSAH)
 
 rocobj1 &lt;- plot.roc(aSAH$outcome, aSAH$s100,
@@ -184,8 +252,7 @@ rocobj1 &lt;- plot.roc(aSAH$outcome, aSAH$s100,
 rocobj2 &lt;- lines.roc(aSAH$outcome, aSAH$ndka, percent=TRUE, col="#008600")
 testobj &lt;- roc.test(rocobj1, rocobj2)
 text(50, 50, labels=paste("p-value =", format.pval(testobj$p.value)), adj=c(0, .5))
-legend("bottomright", legend=c("S100B", "NDKA"), col=c("#1c61b6", "#008600"), lwd=2)
-                    </pre>
+legend("bottomright", legend=c("S100B", "NDKA"), col=c("#1c61b6", "#008600"), lwd=2)</pre>
                 </div>
             </div>
 

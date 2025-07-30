@@ -57,6 +57,40 @@
     font-size: 0.85rem;
     max-height: 400px;
     overflow-y: auto;
+    position: relative;
+}
+
+.copy-button {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    padding: 0.25rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.7;
+}
+
+.copy-button:hover {
+    opacity: 1;
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.copy-button:hover .copy-icon {
+    filter: brightness(0) invert(1);
+}
+
+.copy-icon {
+    width: 16px;
+    height: 16px;
+    filter: brightness(0) saturate(100%) invert(35%) sepia(85%) saturate(2000%) hue-rotate(210deg) brightness(90%) contrast(100%);
+    transition: filter 0.2s ease;
 }
 
 /* Responsive design for screenshots */
