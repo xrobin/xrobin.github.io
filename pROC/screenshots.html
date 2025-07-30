@@ -43,8 +43,8 @@
             if (button && preElement) {
                 // Make entire card clickable to toggle button
                 card.addEventListener('click', function(e) {
-                    // Don't trigger if clicking the button itself
-                    if (e.target !== button) {
+                    // Don't trigger if clicking the button itself or the code block
+                    if (e.target !== button && !e.target.closest('.code-block')) {
                         e.preventDefault();
                         button.click();
                     }
