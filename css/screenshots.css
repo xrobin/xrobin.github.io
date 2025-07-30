@@ -1,0 +1,65 @@
+/* Screenshots page specific styles */
+
+.screenshots-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+    margin: 2rem auto;
+    max-width: 1200px;
+    align-items: start;
+}
+
+.screenshot-card {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all 0.2s ease;
+}
+
+.screenshot-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.screenshot-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.screenshot-content {
+    padding: 1.5rem;
+}
+
+.screenshot-content h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+    font-size: 1.25rem;
+}
+
+.toggle-code {
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+}
+
+.code-block {
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+/* Responsive design for screenshots */
+@media (max-width: 768px) {
+    .screenshots-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .screenshot-content {
+        padding: 1rem;
+    }
+} 

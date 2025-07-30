@@ -1,47 +1,56 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-<title>pROC: Screenshots</title>
-<link href="../css/pROC.css" rel="stylesheet" type="text/css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pROC: Screenshots</title>
+    <link href="../css/pROC.css" rel="stylesheet" type="text/css">
+    <link href="../css/screenshots.css" rel="stylesheet" type="text/css">
 
+    <script type="text/javascript"><!--
+    function getElementsByTagName(tagName) {
+        var elts = new Array;
+        var nextNode = document.firstChild;
+        var currNode;
+        while ((currNode = nextNode)) {
+            if (currNode.nodeName === tagName) elts.push(currNode);
+            nextNode = currNode.firstChild || currNode.nextSibling;
+            while (!nextNode && (currNode = currNode.parentNode)) {
+                nextNode = currNode.nextSibling;
+            }
+        }
+        return elts;
+    };
 
-<script type="text/javascript"><!--
-function getElementsByTagName(tagName) {
-	var elts = new Array;
-	var nextNode = document.firstChild;
-	var currNode;
-	while ((currNode = nextNode)) {
-		if (currNode.nodeName === tagName) elts.push(currNode);
-		nextNode = currNode.firstChild || currNode.nextSibling;
-		while (!nextNode && (currNode = currNode.parentNode)) {
-			nextNode = currNode.nextSibling;
-		}
-	}
-	return elts;
-};
-
-function toggleShowCode(preEltId) {
-	var preElt = document.getElementById(preEltId);
-	if (preElt.style.display == "none") {
-		preElt.style.display = "block";
-	}
-	else {
-		preElt.style.display = "none";
-	}
-}
-
---></script>
+    function toggleShowCode(preEltId) {
+        var preElt = document.getElementById(preEltId);
+        if (preElt.style.display == "none") {
+            preElt.style.display = "block";
+        }
+        else {
+            preElt.style.display = "none";
+        }
+    }
+    --></script>
 </head>
 
 <body>
-<h1 id="pROC_top">pROC: Screenshots</h1>
+    <header class="hero">
+        <div class="container">
+            <h1>pROC: Screenshots</h1>
+            <p class="hero-subtitle">Visual examples and code snippets demonstrating pROC functionality</p>
+        </div>
+    </header>
 
-<div id="pROC_screenshots">
+    <main class="container">
+        <div id="pROC_screenshots" class="screenshots-grid">
 
-<div class="pROC_capture-block">
-	<img src="images/pAUC.png" alt="Partial AUC (pAUC)">
-	<pre id="pROC_pAUC">
+            <div class="screenshot-card">
+                <img src="images/pAUC.png" alt="Partial AUC (pAUC)" class="screenshot-image">
+                <div class="screenshot-content">
+                    <h3>Partial AUC (pAUC)</h3>
+                    <button class="btn btn-outline toggle-code" onclick="toggleShowCode('pROC_pAUC')">Show/hide code</button>
+                    <pre id="pROC_pAUC" class="code-block">
 library(pROC)
 data(aSAH)
 
@@ -61,14 +70,16 @@ plot.roc(aSAH$outcome, aSAH$s100b,
          print.auc.y=40, # do not print auc over the previous one
          auc.polygon=TRUE, auc.polygon.col="#008600",
          max.auc.polygon=TRUE, max.auc.polygon.col="#00860022")
-	</pre>
-</div>
+                    </pre>
+                </div>
+            </div>
 
-
-
-<div class="pROC_capture-block">
-	<img src="images/CI.png" alt="Confidence intervals">
-	<pre id="pROC_CI">
+            <div class="screenshot-card">
+                <img src="images/CI.png" alt="Confidence intervals" class="screenshot-image">
+                <div class="screenshot-content">
+                    <h3>Confidence intervals</h3>
+                    <button class="btn btn-outline toggle-code" onclick="toggleShowCode('pROC_CI')">Show/hide code</button>
+                    <pre id="pROC_CI" class="code-block">
 library(pROC)
 data(aSAH)
 
@@ -80,14 +91,16 @@ ciobj &lt;- ci.se(rocobj, # CI of sensitivity
                specificities=seq(0, 100, 5)) # over a select set of specificities
 plot(ciobj, type="shape", col="#1c61b6AA") # plot as a blue shape
 plot(ci(rocobj, of="thresholds", thresholds="best")) # add one threshold
-	</pre>
-</div>
+                    </pre>
+                </div>
+            </div>
 
-<div class="pROC_clear"></div>
-
-<div class="pROC_capture-block">
-	<img src="images/smoothing.png" alt="Smoothing">
-	<pre id="pROC_smoothing">
+            <div class="screenshot-card">
+                <img src="images/smoothing.png" alt="Smoothing" class="screenshot-image">
+                <div class="screenshot-content">
+                    <h3>Smoothing</h3>
+                    <button class="btn btn-outline toggle-code" onclick="toggleShowCode('pROC_smoothing')">Show/hide code</button>
+                    <pre id="pROC_smoothing" class="code-block">
 library(pROC)
 data(aSAH)
 
@@ -100,12 +113,16 @@ lines(smooth(rocobj, method = "fitdistr", # fit a distribution
              density = "lognormal"), # let the distribution be log-normal
       col = "#840000")
 legend("bottomright", legend = c("Empirical", "Binormal", "Density", "Fitdistr\n(Log-normal)"), col = c("black", "#1c61b6", "#008600", "#840000"),lwd = 2)
-	</pre>
-</div>
+                    </pre>
+                </div>
+            </div>
 
-<div class="pROC_capture-block">
-	<img src="images/CI.sesp.png" alt="Confidence intervals of specificity/sensitivity">
-	<pre id="pROC_CI.sesp">
+            <div class="screenshot-card">
+                <img src="images/CI.sesp.png" alt="Confidence intervals of specificity/sensitivity" class="screenshot-image">
+                <div class="screenshot-content">
+                    <h3>Confidence intervals of specificity/sensitivity</h3>
+                    <button class="btn btn-outline toggle-code" onclick="toggleShowCode('pROC_CI.sesp')">Show/hide code</button>
+                    <pre id="pROC_CI.sesp" class="code-block">
 library(pROC)
 data(aSAH)
 
@@ -116,14 +133,16 @@ rocobj &lt;- plot.roc(aSAH$outcome, aSAH$s100b,
                    ci.type="shape", ci.col="#1c61b6AA") # plot the CI as a blue shape
 plot(ci.sp(rocobj, sensitivities=seq(0, 100, 5)), # ci of specificity
      type="bars") # print this one as bars
-	</pre>
-</div>
+                    </pre>
+                </div>
+            </div>
 
-<div class="pROC_clear"></div>
-
-<div class="pROC_capture-block">
-	<img src="images/CI.thres.png" alt="Confidence interval of a threshold">
-	<pre id="pROC_CI.thres">
+            <div class="screenshot-card">
+                <img src="images/CI.thres.png" alt="Confidence interval of a threshold" class="screenshot-image">
+                <div class="screenshot-content">
+                    <h3>Confidence interval of a threshold</h3>
+                    <button class="btn btn-outline toggle-code" onclick="toggleShowCode('pROC_CI.thres')">Show/hide code</button>
+                    <pre id="pROC_CI.thres" class="code-block">
 library(pROC)
 data(aSAH)
 
@@ -132,12 +151,16 @@ plot.roc(aSAH$outcome, aSAH$s100b,
          ci=TRUE, of="thresholds", # compute AUC (of threshold)
          thresholds="best", # select the (best) threshold
          print.thres="best") # also highlight this threshold on the plot
-	</pre>
-</div>
+                    </pre>
+                </div>
+            </div>
 
-<div class="pROC_capture-block">
-	<img src="images/comparison.png" alt="Comparison">
-	<pre id="pROC_comparison">
+            <div class="screenshot-card">
+                <img src="images/comparison.png" alt="Comparison" class="screenshot-image">
+                <div class="screenshot-content">
+                    <h3>Statistical comparison</h3>
+                    <button class="btn btn-outline toggle-code" onclick="toggleShowCode('pROC_comparison')">Show/hide code</button>
+                    <pre id="pROC_comparison" class="code-block">
 library(pROC)
 data(aSAH)
 
@@ -147,27 +170,20 @@ rocobj2 &lt;- lines.roc(aSAH$outcome, aSAH$ndka, percent=TRUE, col="#008600")
 testobj &lt;- roc.test(rocobj1, rocobj2)
 text(50, 50, labels=paste("p-value =", format.pval(testobj$p.value)), adj=c(0, .5))
 legend("bottomright", legend=c("S100B", "NDKA"), col=c("#1c61b6", "#008600"), lwd=2)
-	</pre>
-</div>
+                    </pre>
+                </div>
+            </div>
 
-<script type="text/javascript"><!--
-var preElts = getElementsByTagName("PRE");
-for (var i = 0; i < preElts.length ; i++) {
-	var preElt = preElts[i];
-	var showHideLink = document.createElement("a");
-	showHideLink.href = "javascript:toggleShowCode(\"" + preElt.id + "\")";
-	showHideLink.className = "showhidelink";
-	var showHideLinkText = document.createTextNode("show/hide code");
-	showHideLink.appendChild(showHideLinkText);
-	preElt.parentNode.insertBefore(document.createElement("br"), preElt);
-	preElt.parentNode.insertBefore(showHideLink, preElt);
-	preElt.style.display="none";
-}
---></script>
+        </div>
+    </main>
 
-</div>
-
-<div class="pROC_clear"></div>
+    <script type="text/javascript"><!--
+    var preElts = getElementsByTagName("PRE");
+    for (var i = 0; i < preElts.length ; i++) {
+        var preElt = preElts[i];
+        preElt.style.display="none";
+    }
+    --></script>
 
 </body>
 </html>

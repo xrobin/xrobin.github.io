@@ -1,357 +1,998 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-<title>pROC: display and analyze ROC curves in R+</title>
-<link href="../css/pROC.css" rel="stylesheet" type="text/css">
-<link href="http://xavier.robin.name/feed/tag/pROC" rel="alternate" type="application/atom+xml">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pROC: display and analyze ROC curves in R</title>
+    <link href="../css/pROC.css" rel="stylesheet" type="text/css">
+    <link href="http://xavier.robin.name/feed/tag/pROC" rel="alternate" type="application/atom+xml">
 </head>
 <body>
 
-<h1 id="top">pROC: display and analyze ROC curves in R</h1>
+<header class="hero">
+    <div class="container">
+        <h1>pROC: display and analyze ROC curves in R</h1>
+        <p class="hero-subtitle">An R package to visualize, smooth and compare receiver operating characteristic (ROC) curves with statistical tests and confidence intervals.</p>
+    </div>
+</header>
 
-<p>pROC is an R package to visualize, smooth and compare receiver operating characteristic (ROC curves). (Partial) area under the curve (AUC) can be compared with statistical tests based on U-statistics or bootstrap. Confidence intervals can be computed for (p)AUC or ROC curves.</p>
+<main class="container">
+    <section class="hero-image">
+        <div class="screenshot-card">
+            <a href="screenshots.html" title="Display screenshots">
+                <img src="images/montage.png" alt="Screenshots montage" class="screenshot-montage">
+            </a>
+            <p class="text-center">
+                <a href="screenshots.html" title="Display screenshots" class="btn btn-secondary">More screenshots and examples →</a>
+            </p>
+        </div>
+    </section>
 
-<p style="text-align:center;"><a href="screenshots.html" title="Display screenshots"><img src="images/montage.png" alt="Screenshots montage" style="border:0"></a>
-<br><a href="screenshots.html" title="Display screenshots">More screenshots and examples…</a></p>
+    <section class="citation-section">
+        <h2>Citation</h2>
+        <p>If you use pROC in published research, please cite the following paper:</p>
+        <blockquote class="citation">
+            Xavier Robin, Natacha Turck, Alexandre Hainard, Natalia Tiberti, Frédérique Lisacek, Jean-Charles Sanchez and Markus Müller (2011). <a href="http://www.biomedcentral.com/1471-2105/12/77/">pROC: an open-source package for R and S+ to analyze and compare ROC curves</a>. <i>BMC Bioinformatics</i>, <b>12</b>, p. 77. DOI: <a href="http://dx.doi.org/10.1186/1471-2105-12-77">10.1186/1471-2105-12-77</a>.
+        </blockquote>
+    </section>
 
-<p>If you use pROC in published research, please cite the following paper:</p>
-<p>Xavier Robin, Natacha Turck, Alexandre Hainard, Natalia Tiberti, Frédérique Lisacek, Jean-Charles Sanchez and Markus Müller (2011). <a href="http://www.biomedcentral.com/1471-2105/12/77/">pROC: an open-source package for R and S+ to analyze and compare ROC curves</a>. <i>BMC Bioinformatics</i>, <b>12</b>, p. 77. DOI: <a href="http://dx.doi.org/10.1186/1471-2105-12-77">10.1186/1471-2105-12-77</a>.</p>
+    <section class="package-info">
+        <div class="info-grid">
+            <div class="info-card">
+                <h3>Version</h3>
+                <div class="badges">
+                    <a href="https://cran.r-project.org/package=pROC">
+                        <img src="https://www.r-pkg.org/badges/version/pROC" alt="CRAN - latest stable">
+                    </a>
+                    <a href="https://github.com/xrobin/pROC">
+                        <img src="../images/github_develop.svg" alt="GitHub">
+                    </a>
+                </div>
+            </div>
+            
+            <div class="info-card">
+                <h3>News</h3>
+                <div class="social-links">
+                    <a href="http://xavier.robin.name/feed/tag/pROC">
+                        <img src="../images/feed_rss.svg" alt="RSS feed">
+                    </a>
+                    <a href="https://twitter.com/pROC_package">
+                        <img src="../images/social_X.svg" alt="Social on X (twitter)">
+                    </a>
+                </div>
+            </div>
+            
+            <div class="info-card">
+                <h3>Authors</h3>
+                <p>Xavier Robin, Natacha Turck, Alexandre Hainard, Natalia Tiberti, Frédérique Lisacek, Jean-Charles Sanchez and Markus Müller</p>
+            </div>
+            
+            <div class="info-card">
+                <h3>Contributors</h3>
+                <p>Stefan Siegert, Matthias Doering, Zane Billings</p>
+            </div>
+            
+            <div class="info-card">
+                <h3>Report a bug</h3>
+                <p><a href="https://github.com/xrobin/pROC/issues">GitHub issue tracker</a></p>
+            </div>
+            
+            <div class="info-card">
+                <h3>License</h3>
+                <p><a href="http://www.gnu.org/licenses/gpl.html">GPLv3</a></p>
+            </div>
+        </div>
+    </section>
 
-<dl>
-	<dt>Version</dt>
-	<dd>
-		<a href="https://cran.r-project.org/package=pROC"><img src="https://www.r-pkg.org/badges/version/pROC" alt="CRAN - latest stable"></a>
-		<a href="https://github.com/xrobin/pROC"><img src="../images/github_develop.svg"></a>
-	<dd>
-	<dt>News</dt><dd><a href="http://xavier.robin.name/feed/tag/pROC"><img src="../images/feed_rss.svg" alt="RSS feed"></a> <a href="https://twitter.com/pROC_package"><img src="../images/social_X.svg" alt="Social on X (twitter)"></a><dd>
-	<dt>Authors</dt><dd>Xavier Robin, Natacha Turck, Alexandre Hainard, Natalia Tiberti, Frédérique Lisacek, Jean-Charles Sanchez and Markus Müller</dd>
-	<dt>Contributors</dt><dd>Stefan Siegert, Matthias Doering, Zane Billings</dd>
-	<dt>Report a bug</dt><dd><a href="https://github.com/xrobin/pROC/issues">GitHub issue tracker</a></dd>
-<!--dt>Contact</dt><dd><a href="http://xavier.robin.name/contact">Xavier Robin</a></dd-->
-	<dt>License</dt><dd><a href="http://www.gnu.org/licenses/gpl.html">GPLv3</a></dd>
-</dl>
+    <section class="installation-section">
+        <h2 id="pROC_installation">Installation</h2>
+        <p>There is no need to download the package. The installation can be done in one command directly from R:</p>
+        <pre><code>install.packages("pROC")</code></pre>
+        <p>The package must then be loaded with:</p>
+        <pre><code>library(pROC)</code></pre>
+        <p>To get help, enter the following in the R prompt:</p>
+        <pre><code>?pROC</code></pre>
+    </section>
 
+    <section class="update-section">
+        <h2>Update</h2>
+        <p>You can update pROC by installing it again:</p>
+        <pre><code>install.packages("pROC")</code></pre>
+        <p>Or updates all your packages:</p>
+        <pre><code>update.packages()</code></pre>
+    </section>
 
+    <section class="bugs-section">
+        <h2 id="pROC_bugs">Known bugs</h2>
+        <p>Please report any bug you may encounter on the <a href="https://github.com/xrobin/pROC/issues">GitHub issue tracker</a>.</p>
+    </section>
 
-<h2 id="pROC_installation">Installation</h2>
-<p>There is no need to download the package. The installation can be done in one command directly from R:</p>
-<pre>install.packages("pROC")</pre>
-<p>The package must then be loaded with:</p>
-<pre>library(pROC)</pre>
-<p>To get help, enter the following in the R prompt:</p>
-<pre>?pROC</pre>
+    <section class="help-section">
+        <h2 id="pROC_help">Finding help</h2>
+        <ul class="help-links">
+            <li><a href="https://github.com/xrobin/pROC/wiki/FAQ---Frequently-asked-questions">Frequently asked questions</a></li>
+            <li><a href="https://rdrr.io/cran/pROC/man/pROC-package.html">Check the manual</a>, or type <code>?pROC</code> on the R prompt.</li>
+            <li>If you still have questions, <a href="https://stackoverflow.com/questions/tagged/proc-r-package">ask a question on Stack Overflow tagged with <code>proc-r-package</code></a>.</li>
+        </ul>
+    </section>
 
-<h2>Update</h2>
-<p>Any of the following commands will update pROC if possible:</p>
-<pre>install.packages("pROC")</pre>
-<pre>update.packages() # will install updates to all your packages</pre>
+    <section class="deprecated-section">
+        <h2>S+ - Deprecated</h2>
+        <p><a href="installS.html">Installation instructions are available for historical purposes.</a></p>
+    </section>
 
-<h2 id="pROC_bugs">Known bugs</h2>
-<p>Please report any bug you may encounter on the <a href="https://github.com/xrobin/pROC/issues">GitHub issue tracker</a>.</p>
+    <section class="version-history">
+        <h2 id="pROC_versions">Version history</h2>
+        <div class="version-timeline">
+            <div class="version-entry">
+                <div class="version-header">
+                    <h3>1.18.5 (2023-07-04)</h3>
+                    <div class="version-links">
+                        <a href="https://cran.r-project.org/src/contrib/pROC_1.18.5.tar.gz">
+                            <img src="../images/download.svg" alt="Download" class="download-icon">
+                            R
+                        </a>
+                    </div>
+                </div>
+                <ul>
+                    <li>Fixed formula input when given as variable and combined with <code>with</code> (<a href="https://github.com/xrobin/pROC/issues/111">issue #111</a>)</li>
+                    <li>Fixed formula containing variables with spaces (<a href="https://github.com/xrobin/pROC/issues/120">issue #120</a>)</li>
+                    <li>Fixed broken grouping when <code>colour</code> argument was given in <code>ggroc</code> (<a href="https://github.com/xrobin/pROC/issues/121">issue #121</a>)</li>
+                </ul>
+            </div>
 
-<h2 id="pROC_help">Finding help</h2>
-<ul>
-	<li><a href="https://github.com/xrobin/pROC/wiki/FAQ---Frequently-asked-questions">Frequently asked questions</a></li>
-	<li><a href="https://rdrr.io/cran/pROC/man/pROC-package.html">Check the manual</a>, or type <code>?pROC</code> on the R prompt.</li>
-	<li>If you still have questions, <a href="https://stackoverflow.com/questions/tagged/proc-r-package">ask a question on Stack Overflow tagged with <code>proc-r-package</code></a>.</li>
-</ul>
+            <div class="version-entry">
+                <div class="version-header">
+                    <h3>1.18.4 (2023-07-04)</h3>
+                    <div class="version-links">
+                        <a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.18.4.tar.gz">
+                            <img src="../images/download.svg" alt="Download" class="download-icon">
+                            R
+                        </a>
+                    </div>
+                </div>
+                <ul>
+                    <li>Fix broken <code>legacy.axes</code> in <code>ggroc</code></li>
+                </ul>
+            </div>
 
-<h2>S+ - Depredcated</h2>
-<p><a href="installS.html">Installation instructions are available for historical purposes.</a></p>
+            <div class="version-entry">
+                <div class="version-header">
+                    <h3>1.18.3 (2023-07-02)</h3>
+                </div>
+                <ul>
+                    <li>Fix warning about <code>aes_string</code> in <code>ggroc</code></li>
+                    <li>Improvements in tests (thanks to Michael Chirico, <a href="https://github.com/xrobin/pROC/pull/114">pr #114</a>, <a href="https://github.com/xrobin/pROC/pull/114">#115</a>)</li>
+                    <li>Fix upcoming CRAN warning about numeric version comparisons</li>
+                </ul>
+            </div>
 
-<h2 id="pROC_versions">Version history</h2>
+            <div class="version-entry">
+                <div class="version-header">
+                    <h3>1.18.2 (2023-05-13)</h3>
+                    <div class="version-links">
+                        <a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.18.2.tar.gz">
+                            <img src="../images/download.svg" alt="Download" class="download-icon">
+                            R</a>
+                    </div>
+                </div>
+                <ul>
+                    <li>Fix CRAN submission NOTE (<a href="https://github.com/xrobin/pROC/issues/112">issue #112</a>)</li>
+                </ul>
+            </div>
 
-	<dl>
-		<dt>1.18.5 (2023-07-04) (<a href="https://cran.r-project.org/src/contrib/pROC_1.18.5.tar.gz">R</a>)</dt>
-		<dd>Fixed formula input when given as variable and combined with <code>with</code> (<a href="https://github.com/xrobin/pROC/issues/111">issue #111</a>)</dd>
-		<dd>Fixed formula containing variables with spaces (<a href="https://github.com/xrobin/pROC/issues/120">issue #120</a>)</dd>
-		<dd>Fixed broken grouping when <code>colour</code> argument was given in <code>ggroc</code> (<a href="https://github.com/xrobin/pROC/issues/121">issue #121</a>)</dd>
-		
-		<dt>1.18.4 (2023-07-04)  (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.18.4.tar.gz">R</a>)</dt>
-		<dd>Fix broken <code>legacy.axes</code> in <code>ggroc</code></dd>
+            <div class="version-entry">
+                <div class="version-header">
+                    <h3>1.18.1 (2023-05-07)</h3>
+                </div>
+                <ul>
+                    <li>Fix <code>print</code>ing some curves built from a formula (<a href="https://github.com/xrobin/pROC/issues/101">issue #101</a>)</li>
+                    <li>Fix tests following <a href="https://bugs.r-project.org/show_bug.cgi?id=18337">upstream updates in density()</a></li>
+                    <li>Improvements in documentation</li>
+                </ul>
+            </div>
 
-		<dt>1.18.3 (2023-07-02)</dt>
-		<dd>Fix warning about <code>aes_string</code> in <code>ggroc</code></dd>
-		<dd>Improvements in tests (thanks to Michael Chirico, <a href="https://github.com/xrobin/pROC/pull/114">pr #114</a>, <a href="https://github.com/xrobin/pROC/pull/114">#115</a>)</dd>
-		<dd>Fix upcoming CRAN warning about numeric version comparisons</dd>
+            <div class="version-entry">
+                <div class="version-header">
+                    <h3>1.18.0 (2021-09-02)</h3>
+                    <div class="version-links">
+                        <a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.18.0.tar.gz">
+                            <img src="../images/download.svg" alt="Download" class="download-icon">
+                            R</a>
+                        <a href="https://xavier.robin.name/en/blog/proc-1.18.0"><img src="../images/document.svg" alt="Document" class="document-icon"> release notes</a>
+                    </div>
+                </div>
+                <ul>
+                    <li>Add CI of the estimate for <code>roc.test</code> (DeLong, paired only for now) (code contributed by Zane Billings) (<a href="https://github.com/xrobin/pROC/pull/95">pr #95</a>)</li>
+                    <li>Fix documentation and alternative hypothesis for Venkatraman test (<a href="https://github.com/xrobin/pROC/issues/92">issue #92</a>)</li>
+                </ul>
+            </div>
 
-		<dt>1.18.2 (2023-05-13) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.18.2.tar.gz">R</a>)</dt>
-		<dd>Fix CRAN submission NOTE (<a href="https://github.com/xrobin/pROC/issues/112">issue #112</a>)</dd>
+            <div class="version-entry">
+                <div class="version-header">
+                    <h3>1.17.0.1 (2021-01-07)</h3>
+                    <div class="version-links">
+                        <a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.17.0.1.tar.gz">
+                            <img src="../images/download.svg" alt="Download" class="download-icon">
+                            R</a>
+                        <a href="https://xavier.robin.name/en/blog/proc-1.17.0.1"><img src="../images/document.svg" alt="Document" class="document-icon"> release notes</a>
+                    </div>
+                </div>
+                <ul>
+                    <li>Fix CRAN incoming checks as requested by CRAN</li>
+                </ul>
+            </div>
 
-		<dt>1.18.1 (2023-05-07)</dt>
-		<dd>Fix <code>print</code>ing some curves built from a formula (<a href="https://github.com/xrobin/pROC/issues/101">issue #101</a>)</dd>
-		<dd>Fix tests following <a href="https://bugs.r-project.org/show_bug.cgi?id=18337">upstream updates in density()</a></dd>
-		<dd>Improvements in documentation</dd>
+            <div class="version-entry">
+                <div class="version-header">
+                    <h3>1.17.0 (2020-12-29)</h3>
+                </div>
+                <ul>
+                    <li>Accept more values in <code>input</code> of coords (<a href="https://github.com/xrobin/pROC/issues/67">issue #67</a>)</li>
+                    <li>Accept <code>kappa</code> for the <code>power.roc.test</code> of two ROC curves (<a href="https://github.com/xrobin/pROC/issues/82">issue #82</a>)</li>
+                    <li>The <code>input</code> argument to <code>coords</code> for <code>smooth.roc</code> curves no longer has a default</li>
+                    <li>The <code>x</code> argument to <code>coords</code> for <code>smooth.roc</code> can now be set to <code>all</code> (also the default)</li>
+                    <li>Fix bootstrap roc.test and cov with <code>smooth.roc</code> curves</li>
+                    <li>The <code>ggroc</code> function can now plot <code>smooth.roc</code> curves (<a href="https://github.com/xrobin/pROC/issues/86">issue #86</a>)</li>
+                    <li>Remove warnings with <code>warnPartialMatchDollar</code> option (<a href="https://github.com/xrobin/pROC/issues/87">issue #87</a>)</li>
+                    <li>Make tests depending on vdiffr conditional (<a href="https://github.com/xrobin/pROC/issues/88">issue #88</a>)</li>
+                </ul>
+            </div>
 
-		<dt>1.18.0 (2021-09-02) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.18.0.tar.gz">R</a>, <a href="https://xavier.robin.name/en/blog/proc-1.18.0">release notes</a>)</dt>
-		<dd>Add CI of the estimate for <code>roc.test</code> (DeLong, paired only for now) (code contributed by Zane Billings) (<a href="https://github.com/xrobin/pROC/pull/95">pr #95</a>) </dd>
-		<dd>Fix documentation and alternative hypothesis for Venkatraman test (<a href="https://github.com/xrobin/pROC/issues/92">issue #92</a>)</dd>
+            <div class="version-entry">
+                <div class="version-header">
+                    <h3>1.16.2 (2020-03-19)</h3>
+                    <div class="version-links">
+                        <a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.16.2.tar.gz">
+                            <img src="../images/download.svg" alt="Download" class="download-icon">
+                            R</a>
+                    </div>
+                </div>
+                <ul>
+                    <li>Skip test depending on Rcpp version</li>
+                </ul>
+            </div>
 
-		<dt>1.17.0.1 (2021-01-07) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.17.0.1.tar.gz">R</a>, <a href="https://xavier.robin.name/en/blog/proc-1.17.0.1">release notes</a>)</dt>
-		<dd>Fix CRAN incoming checks as requested by CRAN</dd>
+            <div class="version-entry">
+                <div class="version-header">
+                    <h3>1.16.1 (2020-01-13)</h3>
+                    <div class="version-links">
+                        <a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.16.1.tar.gz">
+                            <img src="../images/download.svg" alt="Download" class="download-icon">
+                            R</a>
+                        <a href="https://xavier.robin.name/en/blog/proc-1.16.1"><img src="../images/document.svg" alt="Document" class="document-icon"> release notes</a>
+                    </div>
+                </div>
+                <ul>
+                    <li>Skip timing-dependent test failing occasionally on CRAN</li>
+                </ul>
+            </div>
 
-		<dt>1.17.0 (2020-12-29)</dt>
-		<dd>Accept more values in <code>input</code> of coords (<a href="https://github.com/xrobin/pROC/issues/67">issue #67</a>)</dd>
-		<dd>Accept <code>kappa</code> for the <code>power.roc.test</code> of two ROC curves (<a href="https://github.com/xrobin/pROC/issues/82">issue #82</a>)</dd>
-		<dd>The <code>input</code> argument to <code>coords</code> for <code>smooth.roc</code> curves no longer has a default</dd>
-		<dd>The <code>x</code> argument to <code>coords</code> for <code>smooth.roc</code> can now be set to <code>all</code> (also the default)</dd>
-		<dd>Fix bootstrap roc.test and cov with <code>smooth.roc</code> curves</dd>
-		<dd>The <code>ggroc</code> function can now plot <code>smooth.roc</code> curves (<a href="https://github.com/xrobin/pROC/issues/86">issue #86</a>)</dd>
-		<dd>Remove warnings with <code>warnPartialMatchDollar</code> option (<a href="https://github.com/xrobin/pROC/issues/87">issue #87</a>)</dd>
-		<dd>Make tests depending on vdiffr conditional (<a href="https://github.com/xrobin/pROC/issues/88">issue #88</a>)</dd>
+            <div class="version-entry">
+                <div class="version-header">
+                    <h3>1.16.0 (2020-01-12)</h3>
+                    <div class="version-links">
+                        <a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.16.0.tar.gz">
+                            <img src="../images/download.svg" alt="Download" class="download-icon">
+                            R</a>
+                        <a href="https://xavier.robin.name/en/blog/proc-1.16.0"><img src="../images/document.svg" alt="Document" class="document-icon"> release notes</a>
+                    </div>
+                </div>
+                <ul>
+                    <li>BACKWARD INCOMPATIBLE CHANGE: <code>transpose</code> argument to <code>coords</code> switched to FALSE by default (<a href="https://github.com/xrobin/pROC/issues/54">issue #54</a>)</li>
+                    <li>BACKWARD INCOMPATIBLE CHANGE: <code>ci.coords</code> return value is now of list type and easier to use</li>
+                    <li>Fix one-sided DeLong test for curves with <code>direction=">"</code> (<a href="https://github.com/xrobin/pROC/issues/64">issue #64</a>)</li>
+                    <li>Fix an error in <code>ci.coords</code> due to expected NA values in some coords (like "precision") (<a href="https://github.com/xrobin/pROC/issues/65">issue #65</a>)</li>
+                    <li>Ordrered predictors are converted to numeric in a more robust way (<a href="https://github.com/xrobin/pROC/issues/63">issue #63</a>)</li>
+                    <li>Cleaned up <code>power.roc.test</code> code (<a href="https://github.com/xrobin/pROC/issues/50">issue #50</a>)</li>
+                    <li>Fix pairing with <code>roc.formula</code> and warn if <code>na.action</code> is not set to "na.pass" or "na.fail" (<a href="https://github.com/xrobin/pROC/issues/68">issue #68</a>)</li>
+                    <li>Fix <code>ci.coords</code> not working with <code>smooth.roc</code> curves</li>
+                </ul>
+            </div>
 
-		<dt>1.16.2 (2020-03-19) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.16.2.tar.gz">R</a>)</dt>
-		<dd>Skip test depending on Rcpp version</dd>
+            <!-- Add a "Show more" button for older versions -->
+            <div class="show-more-versions">
+                <button class="btn btn-outline" onclick="toggleVersions()">Show older versions</button>
+                <div id="older-versions" class="hidden">
+                    <div class="version-entry">
+                        <div class="version-header">
+                            <h3>1.15.3 (2019-07-21)</h3>
+                            <div class="version-links">
+                                <a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.15.3.tar.gz">
+                            <img src="../images/download.svg" alt="Download" class="download-icon">
+                            R</a>
+                                <a href="https://xavier.robin.name/en/blog/proc-1.15.3"><img src="../images/document.svg" alt="Document" class="document-icon"> release notes</a>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Fix: previous version accidentally set transpose = FALSE, should only be for next major release</li>
+                        </ul>
+                    </div>
 
-		<dt>1.16.1 (2020-01-13 (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.16.1.tar.gz">R</a>, <a href="https://xavier.robin.name/en/blog/proc-1.16.1">release notes</a>)</dt>
-		<dd>Skip timing-dependent test failing occasionally on CRAN</dd>
+                    <div class="version-entry">
+                        <div class="version-header">
+                            <h3>1.15.2 (2019-07-20)</h3>
+                        </div>
+                        <ul>
+                            <li>Fix -Inf threshold in coords for curves with <code>direction = ">"</code> (<a href="https://github.com/xrobin/pROC/issues/60">issue #60</a>)</li>
+                            <li>Restore lazy loading of the data and fix an <code>R CMD check</code> warning "Variables with usage in documentation object <code>aSAH</code> not in code"</li>
+                        </ul>
+                    </div>
 
-		<dt>1.16.0 (2020-01-12) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.16.0.tar.gz">R</a>, <a href="https://xavier.robin.name/en/blog/proc-1.16.0">release notes</a>)</dt>
-		<dd>BACKWARD INCOMPATIBLE CHANGE: <code>transpose</code> argument to <code>coords</code> switched to FALSE by default (<a href="https://github.com/xrobin/pROC/issues/54">issue #54</a>)</dd>
-		<dd>BACKWARD INCOMPATIBLE CHANGE: <code>ci.coords</code> return value is now of list type and easier to use</dd>
-		<dd>Fix one-sided DeLong test for curves with <code>direction=">"</code> (<a href="https://github.com/xrobin/pROC/issues/64">issue #64</a>)</dd>
-		<dd>Fix an error in <code>ci.coords</code> due to expected NA values in some coords (like "precision") (<a href="https://github.com/xrobin/pROC/issues/65">issue #65</a>)</dd>
-		<dd>Ordrered predictors are converted to numeric in a more robust way (<a href="https://github.com/xrobin/pROC/issues/63">issue #63</a>)</dd>
-		<dd>Cleaned up <code>power.roc.test</code> code (<a href="https://github.com/xrobin/pROC/issues/50">issue #50</a>)</dd>
-		<dd>Fix pairing with <code>roc.formula</code> and warn if <code>na.action</code> is not set to "na.pass" or "na.fail" (<a href="https://github.com/xrobin/pROC/issues/68">issue #68</a>)</dd>
-		<dd>Fix <code>ci.coords</code> not working with <code>smooth.roc</code> curves</dd>
-  
-		<dt>1.15.3 (2019-07-21) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.15.3.tar.gz">R</a>, <a href="https://xavier.robin.name/en/blog/proc-1.15.3">release notes</a>)</dt>
-		<dd>Fix: previous version accidentally set transpose = FALSE, should only be for next major release</dd>
+                    <div class="version-entry">
+                        <div class="version-header">
+                            <h3>1.15.1 (2019-07-17)</h3>
+                        </div>
+                        <ul>
+                            <li>Fix erroneous error in <code>ci.coords</code> with <code>ret="threshold"</code> (<a href="https://github.com/xrobin/pROC/issues/57">issue #57</a>)</li>
+                            <li>Fix vdiffr unit tests with ggplot2 3.2.0 (<a href="https://github.com/xrobin/pROC/issues/53">issue #53</a>)</li>
+                            <li>Keep list order in <code>ggroc</code> (<a href="https://github.com/xrobin/pROC/issues/58">issue #58</a>)</li>
+                        </ul>
+                    </div>
 
-		<dt>1.15.2 (2019-07-20)</dt>
-		<dd>Fix -Inf threshold in coords for curves with <code>direction = ">"</code> (<a href="https://github.com/xrobin/pROC/issues/60">issue #60</a>)</dd>
-		<dd>Restore lazy loading of the data and fix an <code>R CMD check</code> warning "Variables with usage in documentation object <code>aSAH</code> not in code"</dd>
+                    <div class="version-entry">
+                        <div class="version-header">
+                            <h3>1.15.0 (2019-06-01)</h3>
+                            <div class="version-links">
+                                <a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.15.0.tar.gz">
+                            <img src="../images/download.svg" alt="Download" class="download-icon">
+                            R</a>
+                                <a href="https://xavier.robin.name/en/blog/proc-1.15.0"><img src="../images/document.svg" alt="Document" class="document-icon"> release notes</a>
+                            </div>
+                        </div>
+                        <ul>
+                            <li><code>roc</code> now prints messages when autodetecting <code>levels</code> and <code>direction</code> by default. Turn off with <code>quiet = TRUE</code> or set these values explicitly</li>
+                            <li>Speedup with <code>algorithm = 2</code> (<a href="https://github.com/xrobin/pROC/issues/44">issue #44</a>) and in <code>coords</code> (<a href="https://github.com/xrobin/pROC/issues/52">issue #52</a>)</li>
+                            <li>New <code>algorithm = 6</code> (used by default) uses <code>algorithm = 2</code> for numeric data, and <code>algorithm = 3</code> for ordered vectors</li>
+                            <li>New <code>roc.data.frame</code> method and <code>roc_</code> function for use in pipelines</li>
+                            <li><code>coords</code> can now returns <code>youden</code> and <code>closest.topleft</code> values (<a href="https://github.com/xrobin/pROC/issues/48">issue #48</a>)</li>
+                            <li>New <code>transpose</code> argument for <code>coords</code>, TRUE by default (<a href="https://github.com/xrobin/pROC/issues/54">issue #54</a>)</li>
+                            <li>Use text instead of Tcl/Tk progress bar by default (<a href="https://github.com/xrobin/pROC/issues/51">issue #51</a>)</li>
+                            <li>Fix <code>method = "density"</code> smoothing when called directly from <code>roc</code> (<a href="https://github.com/xrobin/pROC/issues/49">issue #49</a>)</li>
+                            <li>Renamed <code>roc</code> argument <code>n</code> to <code>smooth.n</code></li>
+                            <li>Fixed <code>are.paired</code> ignoring smoothing arguments of <code>roc2</code> with <code>return.paired.rocs</code></li>
+                            <li>New <code>ret</code> option "all" in <code>coords</code> (<a href="https://github.com/xrobin/pROC/issues/47">issue #47</a>)</li>
+                            <li><code>drop</code> in <code>coords</code> now drops the dimension of <code>ret</code> too (#issue 43)</li>
+                        </ul>
+                    </div>
 
-		<dt>1.15.1 (2019-07-17)</dt>
-		<dd>Fix erroneous error in <code>ci.coords</code> with <code>ret="threshold"</code> (<a href="https://github.com/xrobin/pROC/issues/57">issue #57</a>)</dd>
-		<dd>Fix vdiffr unit tests with ggplot2 3.2.0 (<a href="https://github.com/xrobin/pROC/issues/53">issue #53</a>)</dd>
-		<dd>Keep list order in <code>ggroc</code> (<a href="https://github.com/xrobin/pROC/issues/58">issue #58</a>)</dd>
+                    <div class="version-entry">
+                        <div class="version-header">
+                            <h3>1.14.0 (2019-03-12)</h3>
+                            <div class="version-links">
+                                <a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.14.0.tar.gz">
+                            <img src="../images/download.svg" alt="Download" class="download-icon">
+                            R</a>
+                                <a href="https://xavier.robin.name/en/blog/proc-1.14.0"><img src="../images/document.svg" alt="Document" class="document-icon"> release notes</a>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>The <code>multiclass.roc</code> function now accepts multivariate decision values (code contributed by Matthias Döring)</li>
+                            <li><code>ggroc</code> supports multiple aesthetics (<a href="https://github.com/xrobin/pROC/issues/42">issue #42</a>)</li>
+                            <li>Make <code>ggplot2</code> dependency optional</li>
+                            <li>CSuggested packages can be installed interactively when required</li>
+                            <li>Passing both <code>cases</code> and <code>controls</code> or <code>response</code> and <code>predictor</code> arguments is now an error</li>
+                            <li>Many small bug fixes</li>
+                        </ul>
+                    </div>
 
-		<dt>1.15.0 (2019-06-01) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.15.0.tar.gz">R</a>, <a href="https://xavier.robin.name/en/blog/proc-1.15.0">release notes</a>)</dt>
-		<dd><code>roc</code> now prints messages when autodetecting <code>levels</code> and <code>direction</code> by default. Turn off with <code>quiet = TRUE</code> or set these values explicitly</dd>
-		<dd>Speedup with <code>algorithm = 2</code> (<a href="https://github.com/xrobin/pROC/issues/44">issue #44</a>) and in <code>coords</code> (<a href="https://github.com/xrobin/pROC/issues/52">issue #52</a>)</dd>
-		<dd>New <code>algorithm = 6</code> (used by default) uses <code>algorithm = 2</code> for numeric data, and <code>algorithm = 3</code> for ordered vectors</dd>
-		<dd>New <code>roc.data.frame</code> method and <code>roc_</code> function for use in pipelines</dd>
-		<dd><code>coords</code> can now returns <code>youden</code> and <code>closest.topleft</code> values (<a href="https://github.com/xrobin/pROC/issues/48">issue #48</a>)</dd>
-		<dd>New <code>transpose</code> argument for <code>coords</code>, TRUE by default (<a href="https://github.com/xrobin/pROC/issues/54">issue #54</a>)</dd>
-		<dd>Use text instead of Tcl/Tk progress bar by default (<a href="https://github.com/xrobin/pROC/issues/51">issue #51</a>)</dd>
-		<dd>Fix <code>method = "density"</code> smoothing when called directly from <code>roc</code> (<a href="https://github.com/xrobin/pROC/issues/49">issue #49</a>)</dd>
-		<dd>Renamed <code>roc</code> argument <code>n</code> to <code>smooth.n</code></dd>
-		<dd>Fixed <code>are.paired</code> ignoring smoothing arguments of <code>roc2</code> with <code>return.paired.rocs</code></dd>
-		<dd>New <code>ret</code> option "all" in <code>coords</code> (<a href="https://github.com/xrobin/pROC/issues/47">issue #47</a>)</dd>
-		<dd><code>drop</code> in <code>coords</code> now drops the dimension of <code>ret</code> too (#issue 43)</dd>
+                    <div class="version-entry">
+                        <div class="version-header">
+                            <h3>1.13.0 (2018-09-23)</h3>
+                            <div class="version-links">
+                                <a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.13.0.tar.gz">
+                            <img src="../images/download.svg" alt="Download" class="download-icon">
+                            R</a>
+                                <a href="https://xavier.robin.name/en/blog/proc-1.13.0"><img src="../images/document.svg" alt="Document" class="document-icon"> release notes</a>
+                            </div>
+                        </div>
+                        <ul>
+                            <li><code>roc</code> now returns <code>NaN</code> when predictor contains infinite values (<a href="https://github.com/xrobin/pROC/issues/30">issue #30</a>)</li>
+                            <li>Better handling of near-ties near +-Infinity and 0</li>
+                            <li><code>ggroc</code> supports aes="group" to allow curves with identical aesthetics</li>
+                        </ul>
+                    </div>
 
-		<dt>1.14.0 (2019-03-12) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.14.0.tar.gz">R</a>, <a href="https://xavier.robin.name/en/blog/proc-1.14.0">release notes</a>)</dt>
-		<dd>The <code>multiclass.roc</code> function now accepts multivariate decision values (code contributed by Matthias Döring)</dd>
-		<dd><code>ggroc</code> supports multiple aesthetics (<a href="https://github.com/xrobin/pROC/issues/42">issue #42</a>)</dd>
-		<dd>Make <code>ggplot2</code> dependency optional</dd>
-		<dd>CSuggested packages can be installed interactively when required</dd>
-		<dd>Passing both <code>cases</code> and <code>controls</code> or <code>response</code> and <code>predictor</code> arguments is now an error</dd>
-		<dd>Many small bug fixes</dd>
+                    <div class="version-entry">
+                        <div class="version-header">
+                            <h3>1.12.1 (2018-05-06)</h3>
+                            <div class="version-links">
+                                <a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.12.1.tar.gz">
+                            <img src="../images/download.svg" alt="Download" class="download-icon">
+                            R</a>
+                                <a href="https://xavier.robin.name/en/blog/proc-1.12.1"><img src="../images/document.svg" alt="Document" class="document-icon"> release notes</a>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Fix a regression causing the allocation of a very large vector (<a href="https://github.com/xrobin/pROC/issues/29">issue #29</a>)</li>
+                        </ul>
+                    </div>
 
-		<dt>1.13.0 (2018-09-23) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.13.0.tar.gz">R</a>, <a href="https://xavier.robin.name/en/blog/proc-1.13.0">release notes</a>)</dt>
-		<dd><code>roc</code> now returns <code>NaN</code> when predictor contains infinite values (<a href="https://github.com/xrobin/pROC/issues/30">issue #30</a>)</dd>
-		<dd>Better handling of near-ties near +-Infinity and 0</dd>
-		<dd><code>ggroc</code> supports aes="group" to allow curves with identical aesthetics</dd>
+                    <div class="version-entry">
+                        <div class="version-header">
+                            <h3>1.12.0 (2018-05-05)</h3>
+                            <div class="version-links">
+                                <a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.12.0.tar.gz">
+                            <img src="../images/download.svg" alt="Download" class="download-icon">
+                            R</a>
+                                <a href="https://xavier.robin.name/en/blog/proc-1.12.0">release notes</a>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Fix bug that crashed DeLong calculations when predictor had near-ties close to the floating point precision limit that were rounded back to a predictor value (<a href="https://github.com/xrobin/pROC/issues/25">issue #25</a>)</li>
+                            <li>Fix bug that crashed <code>ci.auc</code> and <code>var</code> if <code>direction</code> was ">" and <code>percent=TRUE</code> (<a href="https://github.com/xrobin/pROC/issues/25">issue #25</a>)</li>
+                            <li>Fix bug causing <code>ci</code> to return <code>NaN</code> values with <code>method="delong"</code> when cases or controls had a single observation (<a href="https://github.com/xrobin/pROC/issues/27">issue #27</a>)</li>
+                            <li>Fix <code>power.roc.curve</code> failed with curves having <code>percent=TRUE</code></li>
+                            <li>Fix <code>ci(..., of="coords")</code> returned the <code>ci</code> function instead of the CI</li>
+                            <li>C++ code now check for user interrupts regularly with Rcpp::checkUserInterrupt()</li>
+                            <li>Better error message for <code>ci.coords</code> attempting to return <code>threshold</code></li>
+                            <li>New algorithm = 5 (used by default) chooses the algorithm based on the number of thresholds to avoid worst case with algorithm = 3</li>
+                        </ul>
+                    </div>
 
-		<dt>1.12.1 (2018-05-06) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.12.1.tar.gz">R</a>, <a href="https://xavier.robin.name/en/blog/proc-1.12.1">release notes</a>)</dt>
-		<dd>Fix a regression causing the allocation of a very large vector (<a href="https://github.com/xrobin/pROC/issues/29">issue #29</a>)</dd>
+                    <div class="version-entry">
+                        <div class="version-header">
+                            <h3>1.11.0 (2018-03-24)</h3>
+                            <div class="version-links">
+                                <a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.11.0.tar.gz">
+                            <img src="../images/download.svg" alt="Download" class="download-icon">
+                            R</a>
+                                <a href="https://xavier.robin.name/en/blog/proc-1.11.0">release notes</a>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Added argument <code>legacy.axes</code> to <code>ggroc</code></li>
+                            <li>Fix NOTE about <code>apparent S3 methods exported but not registered</code> in <code>R CMD check</code></li>
+                        </ul>
+                    </div>
 
-		<dt>1.12.0 (2018-05-05) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.12.0.tar.gz">R</a>, <a href="https://xavier.robin.name/en/blog/proc-1.12.0">release notes</a>)</dt>
-		<dd>Fix bug that crashed DeLong calculations when predictor had near-ties close to the floating point precision limit that were rounded back to a predictor value (<a href="https://github.com/xrobin/pROC/issues/25">issue #25</a>)</dd>
-		<dd>Fix bug that crashed <code>ci.auc</code> and <code>var</code> if <code>direction</code> was ">" and <code>percent=TRUE</code> (<a href="https://github.com/xrobin/pROC/issues/25">issue #25</a>)</dd>
-		<dd>Fix bug causing <code>ci</code> to return <code>NaN</code> values with <code>method="delong"</code> when cases or controls had a single observation (<a href="https://github.com/xrobin/pROC/issues/27">issue #27</a>)</dd>
-		<dd>Fix <code>power.roc.curve</code> failed with curves having <code>percent=TRUE</code></dd>
-		<dd>Fix <code>ci(..., of="coords")</code> returned the <code>ci</code> function instead of the CI</dd>
-		<dd>C++ code now check for user interrupts regularly with Rcpp::checkUserInterrupt()</dd>
-		<dd>Better error message for <code>ci.coords</code> attempting to return <code>threshold</code></dd>
-		<dd>New algorithm = 5 (used by default) chooses the algorithm based on the number of thresholds to avoid worst case with algorithm = 3</dd>
+                    <div class="version-entry">
+                        <div class="version-header">
+                            <h3>1.10.0 (2017-06-10)</h3>
+                            <div class="version-links">
+                                <a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.10.0.tar.gz">
+                            <img src="../images/download.svg" alt="Download" class="download-icon">
+                            R</a>
+                                <a href="https://xavier.robin.name/en/blog/proc-1.10.0">release notes</a>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Basic ggplot2 support (one and multiple ROC curves)</li>
+                            <li>Implement <code>precision</code> and <code>recall</code> for <code>coords</code></li>
+                            <li>Fix: properly handle NAs in cases when passing cases/controls to <code>roc</code> (thanks Thomas König for the report)</li>
+                            <li>Fix various minor bugs detected with new unit tests</li>
+                        </ul>
+                    </div>
 
-		<dt>1.11.0 (2018-03-24) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.11.0.tar.gz">R</a>, <a href="https://xavier.robin.name/en/blog/proc-1.11.0">release notes</a>)</dt>
-		<dd>Added argument <code>legacy.axes</code> to <code>ggroc</code></dd>
-		<dd>Fix NOTE about <code>apparent S3 methods exported but not registered</code> in <code>R CMD check</code></dd>
+                    <div class="version-entry">
+                        <div class="version-header">
+                            <h3>1.9.1 (2017-02-05)</h3>
+                            <div class="version-links">
+                                <a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.9.1.tar.gz">
+                            <img src="../images/download.svg" alt="Download" class="download-icon">
+                            R</a>
+                                <a href="https://xavier.robin.name/en/blog/proc-1.9.1">release notes</a>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Fix: <code>subset</code> and <code>na.action</code> arguments now handled properly in <code>roc.formula</code> (thanks Terry Therneau for the report)</li>
+                            <li>Added policies to handle the case where a ROC curve has multiple "best" threshold in <code>ci</code> (thanks Nicola Toschi for the report)</li>
+                            <li>Support <code>xlim</code> and <code>ylim</code> gracefully in <code>plot.roc</code></li>
+                            <li>Improved validation of input class <code>levels</code> and <code>direction</code>; messages when auto-detecting, use <code>quiet</code> to turn on</li>
+                            <li>Removed extraneous <code>name</code> attribute on the <code>p.value</code> (thanks Paweł Kleka for the report)</li>
+                            <li>Faster DeLong algorithm (code contributed by Stefan Siegert)</li>
+                        </ul>
+                    </div>
 
-		<dt>1.10.0 (2017-06-10) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.10.0.tar.gz">R</a>, <a href="https://xavier.robin.name/en/blog/proc-1.10.0">release notes</a>)</dt>
-		<dd>Basic ggplot2 support (one and multiple ROC curves)</dd>
-		<dd>Implement <code>precision</code> and <code>recall</code> for <code>coords</code></dd>
-		<dd>Fix: properly handle NAs in cases when passing cases/controls to <code>roc</code> (thanks Thomas König for the report)</dd>
-		<dd>Fix various minor bugs detected with new unit tests</dd>
-  
- 		<dt>1.9.1 (2017-02-05) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.9.1.tar.gz">R</a>, <a href="https://xavier.robin.name/en/blog/proc-1.9.1">release notes</a>)</dt>
-		<dd>Fix: <code>subset</code> and <code>na.action</code> arguments now handled properly in <code>roc.formula</code> (thanks Terry Therneau for the report)</dd>
-		<dd>Added policies to handle the case where a ROC curve has multiple "best" threshold in <code>ci</code> (thanks Nicola Toschi for the report)</dd>
-		<dd>Support <code>xlim</code> and <code>ylim</code> gracefully in <code>plot.roc</code></dd>
-		<dd>Improved validation of input class <code>levels</code> and <code>direction</code>; messages when auto-detecting, use <code>quiet</code> to turn on</dd>
-		<dd>Removed extraneous <code>name</code> attribute on the <code>p.value</code> (thanks Paweł Kleka for the report)</dd>
-		<dd>Faster DeLong algorithm (code contributed by Stefan Siegert)</dd>
+                    <div class="version-entry">
+                        <div class="version-header">
+                            <h3>1.8 (2015-05-04)</h3>
+                            <div class="version-links">
+                                <a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.8.tar.gz">
+                            <img src="../images/download.svg" alt="Download" class="download-icon">
+                            R</a>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>NAMESPACE now properly exports the methods as S3 methods.</li>
+                            <li>Now uses and works with <code>requireNamespace</code></li>
+                            <li>Add ability to supply two ordered factors with identical levels as control / cases</li>
+                            <li>Deprecate dangerous use of a matrix as response / predictor with a warning</li>
+                            <li>Forward <code>best.method</code> and <code>best.weights</code> arguments to <code>coords</code> in <code>ci.thresholds</code></li>
+                            <li>Fix CITATION file as per CRAN request</li>
+                            <li>pAUC correction is undefined for partial AUC below the diagonal (result < 0.5) and now returns NA (with a warning). Thanks Vincenzo Lagani for the report.</li>
+                        </ul>
+                    </div>
 
-		<dt>1.8 (2015-05-04) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.8.tar.gz">R</a>)</dt>
-		<dd>NAMESPACE now properly exports the methods as S3 methods.</dd>
-		<dd>Now uses and works with <code>requireNamespace</code></dd>
-		<dd>Add ability to supply two ordered factors with identical levels as control / cases</dd>
-		<dd>Deprecate dangerous use of a matrix as response / predictor with a warning</dd>
-		<dd>Forward <code>best.method</code> and <code>best.weights</code> arguments to <code>coords</code> in <code>ci.thresholds</code></dd>
-		<dd>Fix CITATION file as per CRAN request</dd>
-		<dd>pAUC correction is undefined for partial AUC below the diagonal (result < 0.5) and now returns NA (with a warning). Thanks Vincenzo Lagani for the report.</dd>
+                    <div class="version-entry">
+                        <div class="version-header">
+                            <h3>1.7.3 (2014-06-14)</h3>
+                            <div class="version-links">
+                                <a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.7.3.tar.gz">
+                            <img src="../images/download.svg" alt="Download" class="download-icon">
+                            R</a>
+                                <a href="https://xavier.robin.name/en/blog/proc-1.7.3">release notes</a>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Fixed AUC of binomial-smoothed ROC off by 100^2 (thanks Bao-Li Chang for the report)</li>
+                            <li>Fix print of logcondens-smoothed ROC</li>
+                        </ul>
+                    </div>
 
-		<dt>1.7.3 (2014-06-14) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.7.3.tar.gz">R</a>, <a href="https://xavier.robin.name/en/blog/proc-1.7.3">release notes</a>)</dt>
-		<dd>Fixed AUC of binomial-smoothed ROC off by 100^2 (thanks Bao-Li Chang for the report)</dd>
-		<dd>Fix print of logcondens-smoothed ROC</dd>
+                    <div class="version-entry">
+                        <div class="version-header">
+                            <h3>1.7.2 (2014-04-05)</h3>
+                            <div class="version-links">
+                                <a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.7.2.tar.gz">
+                            <img src="../images/download.svg" alt="Download" class="download-icon">
+                            R</a>
+                                <a href="https://xavier.robin.name/en/blog/2014/04/06/proc-1.7.2">release notes</a>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Fixed bug where <code>ci.coords</code> with <code>x="best"</code> would fail if one or more resampled ROC curve had multiple "best" thresholds (thanks Berend Terluin for the report)</li>
+                            <li>Fixed bug in <code>ci.coords</code>: passing more than one value in <code>x</code> now works</li>
+                            <li>Fixed typo in documentation of <code>direction</code> argument to <code>roc</code> (thanks Le Kang for the report)</li>
+                            <li>Add a warning when computing statistics of ROC curve with AUC = 1</li>
+                            <li>Require latest version of Rcpp to avoid weird errors (thanks Tom Liptrot for the report)</li>
+                        </ul>
+                    </div>
 
-		<dt>1.7.2 (2014-04-05) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.7.2.tar.gz">R</a>, <a href="https://xavier.robin.name/en/blog/2014/04/06/proc-1.7.2">release notes</a>)</dt>
-		<dd>Fixed bug where <code>ci.coords</code> with <code>x="best"</code> would fail if one or more resampled ROC curve had multiple "best" thresholds (thanks Berend Terluin for the report)</dd>
-		<dd>Fixed bug in <code>ci.coords</code>: passing more than one value in <code>x</code> now works</dd>
-		<dd>Fixed typo in documentation of <code>direction</code> argument to <code>roc</code> (thanks Le Kang for the report)</dd>
- 		<dd>Add a warning when computing statistics of ROC curve with AUC = 1</dd>
-		<dd>Require latest version of Rcpp to avoid weird errors (thanks Tom Liptrot for the report)</dd>
+                    <div class="version-entry">
+                        <div class="version-header">
+                            <h3>1.7.1 (2014-02-20)</h3>
+                            <div class="version-links">
+                                <a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.7.1.tar.gz">
+                            <img src="../images/download.svg" alt="Download" class="download-icon">
+                            R</a>
+                                <a href="https://xavier.robin.name/en/blog/2014/02/20/proc-1.7-released"><img src="../images/document.svg" alt="Document" class="document-icon"> release notes</a>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Close SOCK cluster on Windows with parallel=TRUE</li>
+                            <li>Fixed really use algorithm 1 when microbenchmark fails</li>
+                        </ul>
+                    </div>
 
-		<dt>1.7.1 (2014-02-20) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.7.1.tar.gz">R</a>, <a href="https://xavier.robin.name/en/blog/2014/02/20/proc-1.7-released">release notes</a>)</dt>
-		<dd>Close SOCK cluster on Windows with parallel=TRUE</dd>
-		<dd>Fixed really use algorithm 1 when microbenchmark fails</dd>
+                    <div class="version-entry">
+                        <div class="version-header">
+                            <h3>1.7 (2014-02-19)</h3>
+                            <div class="version-links">
+                                <a href="archives/pROC_1.7_R_source.tar.gz">
+                            <img src="../images/download.svg" alt="Download" class="download-icon">
+                            R</a>
+                                <a href="https://xavier.robin.name/en/blog/2014/02/20/proc-1.7-released"><img src="../images/document.svg" alt="Document" class="document-icon"> release notes</a>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Faster algorithm for DeLong <code>roc.test</code>, <code>power.roc.test</code>, <code>ci.auc</code>, <code>var</code> and <code>cov</code> function (no large matrix allocation)</li>
+                            <li>Handling Math and Operations correctly on <code>auc</code> and <code>ci</code> objects (see <code>?groupGeneric.pROC</code>)</li>
+                            <li>The <code>formula</code> for <code>roc.formula</code> can now provide several predictors and a list of ROC curves will be returned</li>
+                            <li>Fixed documentation of <code>ci.coords</code> with examples</li>
+                            <li>Fixed binormal AUC computed with triangulation despite the claim in the documentation</li>
+                            <li>Fixed unstated requirement on Rcpp >= 0.10.5</li>
+                        </ul>
+                    </div>
 
-		<dt>1.7 (2014-02-19) (<a href="archives/pROC_1.7_R_source.tar.gz">R</a>, <a href="https://xavier.robin.name/en/blog/2014/02/20/proc-1.7-released">release notes</a>)</dt>
-		<dd>Faster algorithm for DeLong <code>roc.test</code>, <code>power.roc.test</code>, <code>ci.auc</code>, <code>var</code> and <code>cov</code> function (no large matrix allocation)</dd>
-		<dd>Handling Math and Operations correctly on <code>auc</code> and <code>ci</code> objects (see <code>?groupGeneric.pROC</code>)</dd>
-		<dd>The <code>formula</code> for <code>roc.formula</code> can now provide several predictors and a list of ROC curves will be returned</dd>
-		<dd>Fixed documentation of <code>ci.coords</code> with examples</dd>
-		<dd>Fixed binormal AUC computed with triangulation despite the claim in the documentation</dd>
-		<dd>Fixed unstated requirement on Rcpp >= 0.10.5</dd>
+                    <div class="version-entry">
+                        <div class="version-header">
+                            <h3>1.6.0.1 (2013-12-28)</h3>
+                            <div class="version-links">
+                                <a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.6.0.1.tar.gz">
+                            <img src="../images/download.svg" alt="Download" class="download-icon">
+                            R</a>
+                                <a href="http://xavier.robin.name/blog/2013/12/28/proc-1.6.0.1-released"><img src="../images/document.svg" alt="Document" class="document-icon"> release notes</a>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Removed erroneous error message displayed when predictors and responses were not vectors.</li>
+                        </ul>
+                    </div>
 
-		<dt>1.6.0.1 (2013-12-28) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.6.0.1.tar.gz">R</a>, <a href="http://xavier.robin.name/blog/2013/12/28/proc-1.6.0.1-released">release notes</a>)</dt>
-		<dd>Removed erroneous error message displayed when predictors and responses were not vectors.</dd>
+                    <div class="version-entry">
+                        <div class="version-header">
+                            <h3>1.6 (2013-12-26)</h3>
+                            <div class="version-links">
+                                <a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.6.tar.gz">
+                            <img src="../images/download.svg" alt="Download" class="download-icon">
+                            R</a>
+                                <a href="http://xavier.robin.name/blog/2013/12/26/proc-1.6-released"><img src="../images/document.svg" alt="Document" class="document-icon"> release notes</a>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>New <code>power.roc.test</code> function for sample size and power computations.</li>
+                            <li>New <code>cov</code> and <code>var</code> functions supports new <code>"obuchowski"</code> method.</li>
+                            <li>New <code>ci.coords</code> function to compute CI of arbitrary coords.</li>
+                            <li><code>coords</code> accepts new <code>ret</code> value "1-accuracy".</li>
+                            <li>Introducing various algorithms to compute sensitivities and specificites, with a more vectorized code or Rcpp. See <code>algorithm</code> in <code>?roc</code> for more details on the trade-offs of the different methods.</li>
+                            <li>Faster algorithm for DeLong <code>roc.test</code>, <code>ci</code>, <code>var</code> and </code>cov</code> function (thanks Kazuki Yoshida).</li>
+                            <li><code>are.paired</code> now also checks for identical <code>levels</code>.</li>
+                            <li>Fixed a warning generated in the examples.</li>
+                            <li>Fixed several bugs related with <code>smooth.roc</code> curves.</li>
+                            <li>Additional input data sanity checks.</li>
+                            <li>Now requires R ≥ 2.13 (in fact, since 1.5.1, thanks Emmanuel Curis for the report).</li>
+                            <li>Progress bars now defaults to text on Macs where <code>tcltk</code> seems broken (thanks Gerard Smits for the report).</li>
+                        </ul>
+                    </div>
 
-		<dt>1.6 (2013-12-26) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.6.tar.gz">R</a>, <a href="http://xavier.robin.name/blog/2013/12/26/proc-1.6-released">release notes</a>)</dt>
-		<dd>New <code>power.roc.test</code> function for sample size and power computations.</dd>
-		<dd>New <code>cov</code> and <code>var</code> functions supports new <code>"obuchowski"</code> method.</dd>
-		<dd>New <code>ci.coords</code> function to compute CI of arbitrary coords.</dd>
-		<dd><code>coords</code> accepts new <code>ret</code> value "1-accuracy".</dd>
-		<dd>Introducing various algorithms to compute sensitivities and specificites, with a more vectorized code or Rcpp. See <code>algorithm</code> in <code>?roc</code> for more details on the trade-offs of the different methods.</dd>
-		<dd>Faster algorithm for DeLong <code>roc.test</code>, <code>ci</code>, <code>var</code> and </code>cov</code> function (thanks Kazuki Yoshida).</dd>
-		<dd><code>are.paired</code> now also checks for identical <code>levels</code>.</dd>
-		<dd>Fixed a warning generated in the examples.</dd>
-		<dd>Fixed several bugs related with <code>smooth.roc</code> curves.</dd>
-		<dd>Additional input data sanity checks.</dd>
-		<dd>Now requires R ≥ 2.13 (in fact, since 1.5.1, thanks Emmanuel Curis for the report).</dd>
-		<dd>Progress bars now defaults to text on Macs where <code>tcltk</code> seems broken (thanks Gerard Smits for the report).</dd>
+                    <div class="version-entry">
+                        <div class="version-header">
+                            <h3>1.5.4 (2012-08-31)</h3>
+                            <div class="version-links">
+                                <a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.5.4.tar.gz">
+                            <img src="../images/download.svg" alt="Download" class="download-icon">
+                            R</a>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Running less smooth.roc examples with logcondens because they take too much time (requested by Uwe Ligges).</li>
+                        </ul>
+                    </div>
 
-		<dt>1.5.4 (2012-08-31) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.5.4.tar.gz">R</a>)</dt>
-		<dd>Running less smooth.roc examples with logcondens because they take too much time (requested by Uwe Ligges).</dd>
+                    <div class="version-entry">
+                        <div class="version-header">
+                            <h3>1.5.3 (2011-08-31)</h3>
+                            <div class="version-links">
+                                <a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.5.3.tar.gz">
+                            <img src="../images/download.svg" alt="Download" class="download-icon">
+                            R</a>
+                                <a href="http://xavier.robin.name/blog/2011/12/12/proc-1.5.3-released"><img src="../images/document.svg" alt="Document" class="document-icon"> release notes</a>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>AUC specification was lost when <code>roc.test</code>, <code>cov</code> or <code>var</code> was passed an <code>auc</code> object.</li>
+                            <li>Correct computation of "accuracy" in <code>coords</code> (thanks to Kosuke Yoshihara for the report).</li>
+                        </ul>
+                    </div>
 
-		<dt>1.5.3 (2011-08-31) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.5.3.tar.gz">R</a>, <a href="http://xavier.robin.name/blog/2011/12/12/proc-1.5.3-released">release notes</a>)</dt>
-			<dd>AUC specification was lost when <code>roc.test</code>, <code>cov</code> or <code>var</code> was passed an <code>auc</code> object.</dd>
-			<dd>Correct computation of "accuracy" in <code>coords</code> (thanks to Kosuke Yoshihara for the report).</dd>
+                    <div class="version-entry">
+                        <div class="version-header">
+                            <h3>1.5.1 (2011-03-09)</h3>
+                            <div class="version-links">
+                                <a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.5.1.tar.gz">
+                            <img src="../images/download.svg" alt="Download" class="download-icon">
+                            R</a>
+                                <a href="http://xavier.robin.name/blog/2011/03/09/proc-1.5.1-released"><img src="../images/document.svg" alt="Document" class="document-icon"> release notes</a>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Faster loading of the package (thanks to Prof Brian Ripley and Glenn Lawyer for the report).</li>
+                        </ul>
+                    </div>
 
-		<dt>1.5.1 (2011-03-09) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.5.1.tar.gz">R</a>, <a href="http://xavier.robin.name/blog/2011/03/09/proc-1.5.1-released">release notes</a>)</dt>
-			<dd>Faster loading of the package (thanks to Prof Brian Ripley and Glenn Lawyer for the report).</dd>
+                    <div class="version-entry">
+                        <div class="version-header">
+                            <h3>1.5 (2011-12-12)</h3>
+                            <div class="version-links">
+                                <a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.5.tar.gz">
+                            <img src="../images/download.svg" alt="Download" class="download-icon">
+                            R</a>
+                                <a href="http://xavier.robin.name/blog/2011/12/12/proc-1.5-released"><img src="../images/document.svg" alt="Document" class="document-icon"> release notes</a>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>New <code>cov</code> and <code>var</code> functions.</li>
+                            <li><code>coords</code> accepts new <code>ret</code> values: "accuracy", "tn", "tp", "fn", "fp", "npv", "ppv", "1-specificity", "1-sensitivity", "1-npv", "1-ppv", "npe" and "ppe".</li>
+                            <li>New <code>legacy.axes</code> argument to <code>plot</code> 1-specificity rather than specificity.</li>
+                            <li>New <code>axes</code> argument to turn off the plotting of the axis.</li>
+                            <li>New <code>logcondens</code> and <code>logcondens.smooth</code> (Univariate Log-Concave Density Estimation) smoothing methods.</li>
+                            <li>New function <code>has.partial.auc</code> to determine if an AUC is full or partial.</li>
+                            <li>New argument <code>drop</code> for <code>coords</code>.</li>
+                            <li><code>auc</code> and <code>multiclass.auc</code> objects now also have secondary class <code>numeric</code>.</li>
+                            <li>Updated load call.</li>
+                            <li>Delong's CI reversed in ROC curves with <code>direction="&gt;"</code>.</li>
+                            <li>Delong's CI AUC returned values &gt; 1 or &lt; 0 in some rare cases.</li>
+                            <li>Minor improvements in documentation.</li>
+                        </ul>
+                    </div>
 
-		<dt>1.5 (2011-12-12) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.5.tar.gz">R</a>, <a href="http://xavier.robin.name/blog/2011/12/12/proc-1.5-released">release notes</a>)</dt>
-			<dd>New <code>cov</code> and <code>var</code> functions.</dd>
-			<dd><code>coords</code> accepts new <code>ret</code> values: "accuracy", "tn", "tp", "fn", "fp", "npv", "ppv", "1-specificity", "1-sensitivity", "1-npv", "1-ppv", "npe" and "ppe".</dd>
-			<dd>New <code>legacy.axes</code> argument to <code>plot</code> 1-specificity rather than specificity.</dd>
-			<dd>New <code>axes</code> argument to turn off the plotting of the axis.</dd>
-			<dd>New <code>logcondens</code> and <code>logcondens.smooth</code> (Univariate Log-Concave Density Estimation) smoothing methods.</dd>
-			<dd>New function <code>has.partial.auc</code> to determine if an AUC is full or partial.</dd>
-			<dd>New argument <code>drop</code> for <code>coords</code>.</dd>
-			<dd><code>auc</code> and <code>multiclass.auc</code> objects now also have secondary class <code>numeric</code>.</dd>
-			<dd>Updated load call.</dd>
-			<dd>Delong's CI reversed in ROC curves with <code>direction="&gt;"</code>.</dd>
-			<dd>Delong's CI AUC returned values &gt; 1 or &lt; 0 in some rare cases.</dd>
-			<dd>Minor improvements in documentation.</dd>
+                    <div class="version-entry">
+                        <div class="version-header">
+                            <h3>1.4.9 (2014-01-04)</h3>
+                            <div class="version-links">
+                                <a href="files/pROC_1.4.9_S_source.zip">
+                            <img src="../images/download.svg" alt="Download" class="download-icon">
+                            S+</a>
+                                <a href="http://xavier.robin.name/blog/2011/08/10/proc-1.6-released"><img src="../images/document.svg" alt="Document" class="document-icon"> release notes</a>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>This is the last version of pROC for S+. It introduces some features of pROC 1.5 (covariance and variance functions, some bugfixes) and 1.6 (power tests) for R into S+, and will not be maintained any more.</li>
+                            <li>Fixed custom output report.</li>
+                            <li>New <code>power.roc.test</code> function for sample size and power computations.</li>
+                            <li>New <code>cov</code> and <code>var</code> functions.</li>
+                            <li><code>auc</code> objects now also have secondary class <code>numeric</code>.</li>
+                            <li>Delong's CI reversed in ROC curves with <code>direction="&gt;"</code></li>
+                            <li>Delong's CI AUC returned values &gt; 1 or &lt; 0 in some rare cases</li>
+                            <li>Delong's CI AUC returned NA values when AUC was 1. Now reporting 1-1 interval.</li>
+                            <li>Minor improvements in documentation.</li>
+                        </ul>
+                    </div>
 
-		<dt>1.4.9 (2014-01-04) (<a href="files/pROC_1.4.9_S_source.zip">S+</a> only, <a href="http://xavier.robin.name/blog/2011/08/10/proc-1.6-released">release notes</a>)</dt>
-			<dd>This is the last version of pROC for S+. It introduces some features of pROC 1.5 (covariance and variance functions, some bugfixes) and 1.6 (power tests) for R into S+, and will not be maintained any more.</dd>
-			<dd>Fixed custom output report.</dd>
-			<dd>New <code>power.roc.test</code> function for sample size and power computations.</dd>
-			<dd>New <code>cov</code> and <code>var</code> functions.</dd>
-			<dd><code>auc</code> objects now also have secondary class <code>numeric</code>.</dd>
-			<dd>Delong's CI reversed in ROC curves with <code>direction="&gt;"</code></dd>
-			<dd>Delong's CI AUC returned values &gt; 1 or &lt; 0 in some rare cases</dd>
-			<dd>Delong's CI AUC returned NA values when AUC was 1. Now reporting 1-1 interval.</dd>
-			<dd>Minor improvements in documentation.</dd>
+                    <div class="version-entry">
+                        <div class="version-header">
+                            <h3>1.4.4 (2011-08-10)</h3>
+                            <div class="version-links">
+                                <a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.4.4.tar.gzz">
+                            <img src="../images/download.svg" alt="Download" class="download-icon">
+                            R</a>
+                                <a href="files/pROC_1.4.4_S_source.tar.gz">
+                            <img src="../images/download.svg" alt="Download" class="download-icon">
+                            S+</a>
+                                <a href="http://xavier.robin.name/blog/2011/08/10/proc-1.4.4-released"><img src="../images/document.svg" alt="Document" class="document-icon"> release notes</a>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Fixed alternative for one-tailed tests.</li>
+                            <li>Removed COPYING file to fix a warning in r-devel.</li>
+                        </ul>
+                    </div>
 
-		<dt>1.4.4 (2011-08-10) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.4.4.tar.gzz">R</a>, <a href="files/pROC_1.4.4_S_source.tar.gz">S+</a>, <a href="http://xavier.robin.name/blog/2011/08/10/proc-1.4.4-released">release notes</a>)</dt>
-			<dd>Fixed alternative for one-tailed tests.</dd>
-			<dd>Removed COPYING file to fix a warning in r-devel.</dd>
+                    <div class="version-entry">
+                        <div class="version-header">
+                            <h3>1.4.3 (2011-03-18)</h3>
+                            <div class="version-links">
+                                <a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.4.3.tar.gz">
+                            <img src="../images/download.svg" alt="Download" class="download-icon">
+                            R</a>
+                                <a href="archives/pROC_1.4.3_S_source.zip">
+                            <img src="../images/download.svg" alt="Download" class="download-icon">
+                            S+</a>
+                                <a href="http://xavier.robin.name/blog/2011/03/18/proc-1.4.3-released"><img src="../images/document.svg" alt="Document" class="document-icon"> release notes</a>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Updated citation.</li>
+                        </ul>
+                    </div>
 
-		<dt>1.4.3 (2011-03-18) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.4.3.tar.gz">R</a>, <a href="archives/pROC_1.4.3_S_source.zip">S+</a>, <a href="http://xavier.robin.name/blog/2011/03/18/proc-1.4.3-released">release notes</a>)</dt>
-			<dd>Updated citation.</dd>
+                    <div class="version-entry">
+                        <div class="version-header">
+                            <h3>1.4.2 (2011-03-03)</h3>
+                            <div class="version-links">
+                                <a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.4.2.tar.gz">
+                            <img src="../images/download.svg" alt="Download" class="download-icon">
+                            R</a>
+                                <a href="archives/pROC_1.4.2_S_source.zip">
+                            <img src="../images/download.svg" alt="Download" class="download-icon">
+                            S+</a>
+                                <a href="http://xavier.robin.name/blog/2011/03/03/proc-1.4.2-released"><img src="../images/document.svg" alt="Document" class="document-icon"> release notes</a>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Fixed bootstrap <code>roc.test</code> generating NAs when <code>smooth.roc</code>s were used with <code>reuse.auc=FALSE</code> (thanks to Buddy for the report).</li>
+                            <li>Documented a warning that was missing in <code>roc.test</code>.</li>
+                            <li>Updated citation.</li>
+                        </ul>
+                    </div>
 
-		<dt>1.4.2 (2011-03-03) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.4.2.tar.gz">R</a>, <a href="archives/pROC_1.4.2_S_source.zip">S+</a>, <a href="http://xavier.robin.name/blog/2011/03/03/proc-1.4.2-released">release notes</a>)</dt>
-			<dd>Fixed bootstrap <code>roc.test</code> generating NAs when <code>smooth.roc</code>s were used with <code>reuse.auc=FALSE</code> (thanks to Buddy for the report).</dd>
-			<dd>Documented a warning that was missing in <code>roc.test</code>.</dd>
-			<dd>Updated citation.</dd>
+                    <div class="version-entry">
+                        <div class="version-header">
+                            <h3>1.4.1 (2011-01-27)</h3>
+                            <div class="version-links">
+                                <a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.4.1.tar.gz">
+                            <img src="../images/download.svg" alt="Download" class="download-icon">
+                            R</a>
+                                <a href="archives/pROC_1.4.1_S_source.zip">
+                            <img src="../images/download.svg" alt="Download" class="download-icon">
+                            S+</a>
+                                <a href="http://xavier.robin.name/blog/2011/01/27/proc-1.4.1-released"><img src="../images/document.svg" alt="Document" class="document-icon"> release notes</a>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Venkatraman's test for unpaired ROC curves.</li>
+                        </ul>
+                    </div>
 
-		<dt>1.4.1 (2011-01-27) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.4.1.tar.gz">R</a>, <a href="archives/pROC_1.4.1_S_source.zip">S+</a>, <a href="http://xavier.robin.name/blog/2011/01/27/proc-1.4.1-released">release notes</a>)</dt>
-			<dd>Venkatraman's test for unpaired ROC curves.</dd>
+                    <div class="version-entry">
+                        <div class="version-header">
+                            <h3>1.4 (2011-01-21)</h3>
+                            <div class="version-links">
+                                <a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.4.tar.gz">
+                            <img src="../images/download.svg" alt="Download" class="download-icon">
+                            R</a>
+                                <a href="archives/pROC_1.4_S_source.zip">
+                            <img src="../images/download.svg" alt="Download" class="download-icon">
+                            S+</a>
+                                <a href="http://xavier.robin.name/blog/2011/01/21/proc-1.4-released"><img src="../images/document.svg" alt="Document" class="document-icon"> release notes</a>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>'smooth' does not apply on <code>ordered</code> factors anymore.</li>
+                            <li>Multi-class AUC support (R only).</li>
+                            <li>Can choose how <code>best</code> thresold is determined (<code>best.method</code> and <code>best.weights</code> in <code>coords</code> and <code>print.thres.best.method</code> and <code>print.thres.best.weights</code> in <code>plot.roc</code>).</li>
+                            <li>Minor fixes in documentation (R and S+) and <code>citation</code> (S+ only).</li>
+                            <li><code>print</code> now prints the response instead of <em>response</em> and more informative data in <code>htest</code>s.</li>
+                            <li>Bootstrap with <code>ci.auc</code> consumes much less memory.</li>
+                            <li>Unpaired bootstrap and DeLong's test.</li>
+                            <li>Specificity and sensitivity tests (in <code>roc.test</code>).</li>
+                        </ul>
+                    </div>
 
-		<dt>1.4 (2011-01-21) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.4.tar.gz">R</a>, <a href="archives/pROC_1.4_S_source.zip">S+</a>, <a href="http://xavier.robin.name/blog/2011/01/21/proc-1.4-released">release notes</a>)</dt>
-			<dd>'smooth' does not apply on <code>ordered</code> factors anymore.</dd>
-			<dd>Multi-class AUC support (R only).</dd>
-			<dd>Can choose how <code>best</code> thresold is determined (<code>best.method</code> and <code>best.weights</code> in <code>coords</code> and <code>print.thres.best.method</code> and <code>print.thres.best.weights</code> in <code>plot.roc</code>).</dd>
-			<dd>Minor fixes in documentation (R and S+) and <code>citation</code> (S+ only).</dd>
-			<dd><code>print</code> now prints the response instead of <em>response</em> and more informative data in <code>htest</code>s.</dd>
-			<dd>Bootstrap with <code>ci.auc</code> consumes much less memory.</dd>
-			<dd>Unpaired bootstrap and DeLong's test.</dd>
-			<dd>Specificity and sensitivity tests (in <code>roc.test</code>).</dd>
+                    <div class="version-entry">
+                        <div class="version-header">
+                            <h3>1.3.2 (2010-08-24)</h3>
+                            <div class="version-links">
+                                <a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.3.2.tar.gz">
+                            <img src="../images/download.svg" alt="Download" class="download-icon">
+                            R</a>
+                                <a href="archives/pROC_1.3.2_S_source.zip">
+                            <img src="../images/download.svg" alt="Download" class="download-icon">
+                            S+</a>
+                                <a href="http://xavier.robin.name/blog/2010/08/24/proc-1.3.2-released"><img src="../images/document.svg" alt="Document" class="document-icon"> release notes</a>
+                            </div>
+                        </div>
+                        <ul>
+                            <li><code>print.auc</code> printed incorrect CI in <code>plot.roc</code> (thanks to Alexander B. Leichtle for the report).</li>
+                            <li>Failed to detect local maximas in <code>coords</code> when 2 or less points were selected.</li>
+                            <li>Don't consider ROC extremities (+-Inf at 1.0/0.0 SE<->SP) as local maximas.</li>
+                        </ul>
+                    </div>
 
-		<dt>1.3.2 (2010-08-24) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.3.2.tar.gz">R</a>, <a href="archives/pROC_1.3.2_S_source.zip">S+</a>, <a href="http://xavier.robin.name/blog/2010/08/24/proc-1.3.2-released">release notes</a>)</dt>
-			<dd><code>print.auc</code> printed incorrect CI in <code>plot.roc</code> (thanks to Alexander B. Leichtle for the report).</dd>
-			<dd>Failed to detect local maximas in <code>coords</code> when 2 or less points were selected.</dd>
-			<dd>Don't consider ROC extremities (+-Inf at 1.0/0.0 SE<->SP) as local maximas.</dd>
+                    <div class="version-entry">
+                        <div class="version-header">
+                            <h3>1.3.1 (2010-08-18)</h3>
+                            <div class="version-links">
+                                <a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.3.1.tar.gz">
+                            <img src="../images/download.svg" alt="Download" class="download-icon">
+                            R</a>
+                                <a href="http://xavier.robin.name/blog/2010/08/18/proc-1.3.1-released"><img src="../images/document.svg" alt="Document" class="document-icon"> release notes</a>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Sensitivity and specificity were inverted in coords when results were reported as list.</li>
+                            <li>Faster checks with <code>\dontrun{}</code> in <code>roc.test</code>.</li>
+                        </ul>
+                    </div>
 
-		<dt>1.3.1 (2010-08-18) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.3.1.tar.gz">R</a>, <a href="http://xavier.robin.name/blog/2010/08/18/proc-1.3.1-released">release notes</a>)</dt>
-			<dd>Sensitivity and specificity were inverted in coords when results were reported as list.</dd>
-			<dd>Faster checks with <code>\dontrun{}</code> in <code>roc.test</code>.</dd>
+                    <div class="version-entry">
+                        <div class="version-header">
+                            <h3>1.3 (2010-08-13)</h3>
+                            <div class="version-links">
+                                <a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.3.tar.gz">
+                            <img src="../images/download.svg" alt="Download" class="download-icon">
+                            R</a>
+                                <a href="archives/pROC_1.3_S_source.zip">
+                            <img src="../images/download.svg" alt="Download" class="download-icon">
+                            S+</a>
+                                <a href="http://xavier.robin.name/blog/2010/08/13/proc-1.3-released"><img src="../images/document.svg" alt="Document" class="document-icon"> release notes</a>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>CI is not re-computed by default in <code>smooth.roc</code>. You can still turn it on with <code>reuse.ci=TRUE</code>.</li>
+                            <li>New function <code>are.paired</code>.</li>
+                            <li>Local maximas could be incorrectly detected in <code>coords</code> (and <code>plot.roc</code>) with <code>predictor</code>s containing more than 2 levels.</li>
+                            <li>New method <code>venkatraman</code> for <code>roc.test</code>.</li>
+                            <li>MASS and tcltk packages are now only suggested instead of required (R only).</li>
+                            <li><code>...</code> not passed correctly in <code>plot.ci.se</code> with <code>type="bars"</code> resulting in an error (R only).</li>
+                        </ul>
+                    </div>
 
-		<dt>1.3 (2010-08-13) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.3.tar.gz">R</a>, <a href="archives/pROC_1.3_S_source.zip">S+</a>, <a href="http://xavier.robin.name/blog/2010/08/13/proc-1.3-released">release notes</a>)</dt>
-		  <dd>CI is not re-computed by default in <code>smooth.roc</code>. You can still turn it on with <code>reuse.ci=TRUE</code>.</dd>
-			<dd>New function <code>are.paired</code>.</dd>
-			<dd>Local maximas could be incorrectly detected in <code>coords</code> (and <code>plot.roc</code>) with <code>predictor</code>s containing more than 2 levels.</dd>
-			<dd>New method <code>venkatraman</code> for <code>roc.test</code>.</dd>
-			<dd>MASS and tcltk packages are now only suggested instead of required (R only).</dd>
-			<dd><code>...</code> not passed correctly in <code>plot.ci.se</code> with <code>type="bars"</code> resulting in an error (R only).</dd>
+                    <div class="version-entry">
+                        <div class="version-header">
+                            <h3>1.2.1 (2010-05-11)</h3>
+                            <div class="version-links">
+                                <a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.2.1.tar.gzz">
+                            <img src="../images/download.svg" alt="Download" class="download-icon">
+                            R</a>
+                                <a href="archives/pROC_1.2.1_S_source.zip">
+                            <img src="../images/download.svg" alt="Download" class="download-icon">
+                            S+</a>
+                                <a href="http://xavier.robin.name/blog/2010/05/11/proc-1.2.1-released"><img src="../images/document.svg" alt="Document" class="document-icon"> release notes</a>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Handle <code>method</code> arguments for <code>smooth.roc</code> and <code>ci.auc</code> separately in <code>roc.default</code> (R-only).</li>
+                            <li>Added <code>auc.polygon.*</code> and <code>max.auc.polygon.*</code> arguments for <code>polygon</code> in <code>plot.roc</code>.</li>
+                        </ul>
+                    </div>
 
-		<dt>1.2.1 (2010-05-11) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.2.1.tar.gzz">R</a>, <a href="archives/pROC_1.2.1_S_source.zip">S+</a>, <a href="http://xavier.robin.name/blog/2010/05/11/proc-1.2.1-released">release notes</a>)</dt>
-			<dd>Handle <code>method</code> arguments for <code>smooth.roc</code> and <code>ci.auc</code> separately in <code>roc.default</code> (R-only).</dd>
-			<dd>Added <code>auc.polygon.*</code> and <code>max.auc.polygon.*</code> arguments for <code>polygon</code> in <code>plot.roc</code>.</dd>
+                    <div class="version-entry">
+                        <div class="version-header">
+                            <h3>1.2 (2010-05-09)</h3>
+                            <div class="version-links">
+                                <a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.2.tar.gz">
+                            <img src="../images/download.svg" alt="Download" class="download-icon">
+                            R</a>
+                                <a href="http://xavier.robin.name/blog/2010/05/09/proc-1.2-released"><img src="../images/document.svg" alt="Document" class="document-icon"> release notes</a>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Added DeLong method in <code>ci.auc</code> (with a GUI, S+ only).</li>
+                            <li>Return value of ci.auc does not contain an <code>"aucs"</code> item anymore.</li>
+                            <li>Put most examples with bootstrap within <code>\dontrun{}</code> blocks for faster (but less useful) checks execution.</li>
+                        </ul>
+                    </div>
 
-		<dt>1.2 (2010-05-09) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.2.tar.gz">R</a>, <a href="http://xavier.robin.name/blog/2010/05/09/proc-1.2-released">release notes</a>)</dt>
-			<dd>Added DeLong method in <code>ci.auc</code> (with a GUI, S+ only).</dd>
-			<dd>Return value of ci.auc does not contain an <code>"aucs"</code> item anymore.</dd>
-			<dd>Put most examples with bootstrap within <code>\dontrun{}</code> blocks for faster (but less useful) checks execution.</dd>
+                    <div class="version-entry">
+                        <div class="version-header">
+                            <h3>1.1 (2010-05-05)</h3>
+                            <div class="version-links">
+                                <a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.1.tar.gz">
+                            <img src="../images/download.svg" alt="Download" class="download-icon">
+                            R</a>
+                                <a href="archives/pROC_1.1_S_source.zip">
+                            <img src="../images/download.svg" alt="Download" class="download-icon">
+                            S+</a>
+                                <a href="http://xavier.robin.name/blog/2010/05/05/proc-1.1-released"><img src="../images/document.svg" alt="Document" class="document-icon"> release notes</a>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Added <code>lines.roc</code> functions for ROC.</li>
+                            <li>Added <code>type</code> argument for both <code>lines.roc</code> and <code>plot.roc</code>.</li>
+                            <li>Added <code>print.auc.col</code> argument to <code>plot.roc</code>.</li>
+                            <li>Fixed a warning in <code>roc.test.default</code> when the class of <code>predictor1</code> had several elements.</li>
+                            <li>Fixed an encoding failure during the checks on MacOS X (R only).</li>
+                        </ul>
+                    </div>
 
-		<dt>1.1 (2010-05-05) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.1.tar.gz">R</a>, <a href="archives/pROC_1.1_S_source.zip">S+</a>, <a href="http://xavier.robin.name/blog/2010/05/05/proc-1.1-released">release notes</a>)</dt>
-			<dd>Added <code>lines.roc</code> functions for ROC.</dd>
-			<dd>Added <code>type</code> argument for both <code>lines.roc</code> and <code>plot.roc</code>.</dd>
-			<dd>Added <code>print.auc.col</code> argument to <code>plot.roc</code>.</dd>
-			<dd>Fixed a warning in <code>roc.test.default</code> when the class of <code>predictor1</code> had several elements.</dd>
-			<dd>Fixed an encoding failure during the checks on MacOS X (R only).</dd>
+                    <div class="version-entry">
+                        <div class="version-header">
+                            <h3>1.0.1 (2010-04-28)</h3>
+                            <div class="version-links">
+                                <a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.0.1.tar.gz">
+                            <img src="../images/download.svg" alt="Download" class="download-icon">
+                            R</a>
+                                <a href="http://xavier.robin.name/blog/2010/04/28/proc-1.0.1-released"><img src="../images/document.svg" alt="Document" class="document-icon"> release notes</a>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Reduced examples execution time. Added low <code>boot.n</code> in the slowest examples and <code>reuse.auc</code> and <code>reuse.ci</code> arguments in <code>smooth.roc.roc</code>.</li>
+                        </ul>
+                    </div>
 
-		<dt>1.0.1 (2010-04-28) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.0.1.tar.gz">R</a>, <a href="http://xavier.robin.name/blog/2010/04/28/proc-1.0.1-released">release notes</a>)</dt>
-			<dd>Reduced examples execution time. Added low <code>boot.n</code> in the slowest examples and <code>reuse.auc</code> and <code>reuse.ci</code> arguments in <code>smooth.roc.roc</code>.</dd>
+                    <div class="version-entry">
+                        <div class="version-header">
+                            <h3>1.0 (2010-04-27)</h3>
+                            <div class="version-links">
+                                <a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.0.tar.gz">
+                            <img src="../images/download.svg" alt="Download" class="download-icon">
+                            R</a>
+                                <a href="archives/pROC_1.0_S_source.zip">
+                            <img src="../images/download.svg" alt="Download" class="download-icon">
+                            S+</a>
+                                <a href="http://xavier.robin.name/blog/2010/04/27/proc-1.0-released"><img src="../images/document.svg" alt="Document" class="document-icon"> release notes</a>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>First public release.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-		<dt>1.0 (2010-04-27) (<a href="https://cran.r-project.org/src/contrib/Archive/pROC/pROC_1.0.tar.gz">R</a>, <a href="archives/pROC_1.0_S_source.zip">S+</a>, <a href="http://xavier.robin.name/blog/2010/04/27/proc-1.0-released">release notes</a>)</dt>
-			<dd>First public release.</dd>
-	</dl>
+    <section class="references-section">
+        <h2 id="pROC_references">References</h2>
+        <ul class="references-list">
+            <li>James Carpenter and John Bithell (2000) "Bootstrap condence intervals: when, which, what? A practical guide for medical statisticians". <i>Statistics in Medicine</i> <b>19</b>, 1141–1164. DOI:&nbsp;<a href="http://dx.doi.org/10.1002/(SICI)1097-0258(20000515)19:9%3C1141::AID-SIM479%3E3.0.CO%3B2-F">10.1002/(SICI)1097-0258(20000515)19:9<1141::AID-SIM479>3.0.CO;2-F</a>; PMID:&nbsp;<a href="http://www.ncbi.nlm.nih.gov/pubmed/10797513">10797513</a>.</li>
+            <li>Elisabeth R. DeLong, David M. DeLong and Daniel L. Clarke-Pearson (1988) "Comparing the areas under two or more correlated receiver operating characteristic curves: a nonparametric approach". <i>Biometrics</i> <b>44</b>, 837–845. JSTOR:&nbsp;<a href="http://www.jstor.org/stable/info/2531595">2531595</a>; PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/3203132">3203132</a>.</li>
+            <li>Lutz Duembgen, Kaspar Rufibach (2011) "logcondens: Computations Related to Univariate Log-Concave Density Estimation". <i>Journal of Statistical Software</i>, <b>39</b>, 1–28. URL: <a href="http://www.jstatsoft.org/v39/i06/">jstatsoft.org/v39/i06</a>.</li> 
+            <li>Tom Fawcett (2006) "An introduction to ROC analysis". <i>Pattern Recognition Letters</i> <b>27</b>, 861–874. DOI:&nbsp;<a href="http://dx.doi.org/10.1016/j.patrec.2005.10.010">j.patrec.2005.10.010</a>.</li>
+            <li>James E. Hanley (1988) "The robustness of the "binormal" assumptions used in fitting ROC curves". <i>Medical Decision Making</i> <b>8</b>, 197–203. DOI:&nbsp;<a href="http://dx.doi.org/10.1177/0272989X8800800308">10.1177/0272989X8800800308</a>; PMID:&nbsp;<a href="http://www.ncbi.nlm.nih.gov/pubmed/3398748">3398748</a>.</li>
+            <li>Donna Katzman McClish (1989) "Analyzing a Portion of the ROC Curve". <i>Medical Decision Making</i> <b>9</b>, 190–195. DOI:&nbsp;<a href="http://dx.doi.org/10.1177/0272989X8900900307">10.1177/0272989X8900900307</a>; PMID:&nbsp;<a href="http://www.ncbi.nlm.nih.gov/pubmed/2668680">2668680</a>.</li>
+            <li>Nancy A. Obuchowski and Donna K. McClish (1997) "Sample size determination for diagnostic accurary studies involving binormal ROC curve indices". <i>Statistics in Medicine</i>, <b>16</b>, 1529–1542. DOI: <a href="http://dx.doi.org/10.1002/(SICI)1097-0258(19970715)16:13&lt;1529::AID-SIM565&gt;3.0.CO;2-H">10.1002/(SICI)1097-0258(19970715)16:13&lt;1529::AID-SIM565&gt;3.0.CO;2-H</a>.</li>
+            <li>Nancy A. Obuchowski, Micharl L. Lieber and Frank H. Wians Jr. (2004) "ROC Curves in Clinical Chemistry: Uses, Misuses, and Possible Solutions". <i>Clinical Chemistry</i>, <b>50</b>, 1118–1125. DOI: <a href="http://dx.doi.org/10.1373/clinchem.2004.031823">10.1373/clinchem.2004.031823</a>.</li>
+            <li>Margaret Pepe, Gary Longton and Holly Janes (2009) "Estimation and Comparison of Receiver Operating Characteristic Curves". <i>The Stata journal</i> <b>9</b>, 1. PMID:&nbsp;<a href="http://www.ncbi.nlm.nih.gov/pubmed/20161343">20161343</a>.</li>
+            <li>Xavier Robin, Natacha Turck <i>et al.</i> (2011) "pROC: an open-source package for R and S+ to analyze and compare ROC curves". <i>BMC Bioinformatics</i>, <b>12</b>, 77. DOI: <a href="http://dx.doi.org/10.1186/1471-2105-12-77">10.1186/1471-2105-12-77</a>.</li>
+            <li>E. S. Venkatraman and Colin B. Begg (1996) "A distribution-free procedure for comparing receiver operating characteristic curves from a paired experiment". <i>Biometrika</i> <b>83</b>, 835–848. DOI: <a href="http://dx.doi.org/10.1093/biomet/83.4.835">10.1093/biomet/83.4.835</a></li>
+            <li>E. S. Venkatraman (2000) "A Permutation Test to Compare Receiver Operating Characteristic Curves". <i>Biometrics</i> <b>56</b>, 1134–1138. DOI: <a href="http://dx.doi.org/10.1111/j.0006-341X.2000.01134.x">10.1111/j.0006-341X.2000.01134.x</a>.</li>
+            <li>Kelly H. Zou, W. J. Hall and David E. Shapiro (1997) "Smooth non-parametric receiver operating characteristic (ROC) curves for continuous diagnostic tests". <i>Statistics in Medicine</i> <b>18</b>, 2143–2156. DOI:&nbsp;<a href="http://dx.doi.org/10.1002/(SICI)1097-0258(19971015)16:19%3C2143::AID-SIM655%3E3.0.CO%3B2-3">10.1002/(SICI)1097-0258(19971015)16:19&lt;2143::AID-SIM655&gt;3.0.CO;2-3</a>; PMID:&nbsp;<a href="http://www.ncbi.nlm.nih.gov/pubmed/9330425 ">9330425 </a>.</li>
+        </ul>
+    </section>
+</main>
 
-<h2 id="pROC_references">References</h2>
-<ul>
-	<li>James Carpenter and John Bithell (2000) “Bootstrap condence intervals: when, which, what? A practical guide for medical statisticians”. <i>Statistics in Medicine</i> <b>19</b>, 1141–1164. DOI:&nbsp;<a href="http://dx.doi.org/10.1002/(SICI)1097-0258(20000515)19:9%3C1141::AID-SIM479%3E3.0.CO%3B2-F">10.1002/(SICI)1097-0258(20000515)19:9<1141::AID-SIM479>3.0.CO;2-F</a>; PMID:&nbsp;<a href="http://www.ncbi.nlm.nih.gov/pubmed/10797513">10797513</a>.</li>
-	<li>Elisabeth R. DeLong, David M. DeLong and Daniel L. Clarke-Pearson (1988) “Comparing the areas under two or more correlated receiver operating characteristic curves: a nonparametric approach”. <i>Biometrics</i> <b>44</b>, 837–845. JSTOR:&nbsp;<a href="http://www.jstor.org/stable/info/2531595">2531595</a>; PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/3203132">3203132</a>.</li>
-	<li>Lutz Duembgen, Kaspar Rufibach (2011) “logcondens: Computations Related to Univariate Log-Concave Density Estimation”. <i>Journal of Statistical Software</i>, <b>39</b>, 1–28. URL: <a href="http://www.jstatsoft.org/v39/i06/">jstatsoft.org/v39/i06</a>.</li> 
-	<li>Tom Fawcett (2006) “An introduction to ROC analysis”. <i>Pattern Recognition Letters</i> <b>27</b>, 861–874. DOI:&nbsp;<a href="http://dx.doi.org/10.1016/j.patrec.2005.10.010">j.patrec.2005.10.010</a>.</li>
-	<li>James E. Hanley (1988) “The robustness of the “binormal” assumptions used in fitting ROC curves”. <i>Medical Decision Making</i> <b>8</b>, 197–203. DOI:&nbsp;<a href="http://dx.doi.org/10.1177/0272989X8800800308">10.1177/0272989X8800800308</a>; PMID:&nbsp;<a href="http://www.ncbi.nlm.nih.gov/pubmed/3398748">3398748</a>.</li>
-	<li>Donna Katzman McClish (1989) “Analyzing a Portion of the ROC Curve”. <i>Medical Decision Making</i> <b>9</b>, 190–195. DOI:&nbsp;<a href="http://dx.doi.org/10.1177/0272989X8900900307">10.1177/0272989X8900900307</a>; PMID:&nbsp;<a href="http://www.ncbi.nlm.nih.gov/pubmed/2668680">2668680</a>.</li>
-	<li>Nancy A. Obuchowski and Donna K. McClish (1997) “Sample size determination for diagnostic accurary studies involving binormal ROC curve indices”. <i>Statistics in Medicine</i>, <b>16</b>, 1529–1542. DOI: <a href="http://dx.doi.org/10.1002/(SICI)1097-0258(19970715)16:13&lt;1529::AID-SIM565&gt;3.0.CO;2-H">10.1002/(SICI)1097-0258(19970715)16:13&lt;1529::AID-SIM565&gt;3.0.CO;2-H</a>.</li>
-	<li>Nancy A. Obuchowski, Micharl L. Lieber and Frank H. Wians Jr. (2004) “ROC Curves in Clinical Chemistry: Uses, Misuses, and Possible Solutions”. <i>Clinical Chemistry</i>, <b>50</b>, 1118–1125. DOI: <a href="http://dx.doi.org/10.1373/clinchem.2004.031823">10.1373/clinchem.2004.031823</a>.</li>
-	<li>Margaret Pepe, Gary Longton and Holly Janes (2009) “Estimation and Comparison of Receiver Operating Characteristic Curves”. <i>The Stata journal</i> <b>9</b>, 1. PMID:&nbsp;<a href="http://www.ncbi.nlm.nih.gov/pubmed/20161343">20161343</a>.</li>
-	<li>Xavier Robin, Natacha Turck <i>et al.</i> (2011) “pROC: an open-source package for R and S+ to analyze and compare ROC curves”. <i>BMC Bioinformatics</i>, <b>12</b>, 77. DOI: <a href="http://dx.doi.org/10.1186/1471-2105-12-77">10.1186/1471-2105-12-77</a>.</li>
-	<li>E. S. Venkatraman and Colin B. Begg (1996) “A distribution-free procedure for comparing receiver operating characteristic curves from a paired experiment”. <i>Biometrika</i> <b>83</b>, 835–848. DOI: <a href="http://dx.doi.org/10.1093/biomet/83.4.835">10.1093/biomet/83.4.835</a></li>
-	<li>E. S. Venkatraman (2000) “A Permutation Test to Compare Receiver Operating Characteristic Curves”. <i>Biometrics</i> <b>56</b>,
-  1134–1138. DOI: <a href="http://dx.doi.org/10.1111/j.0006-341X.2000.01134.x">10.1111/j.0006-341X.2000.01134.x</a>.</li>
-	<li>Kelly H. Zou, W. J. Hall and David E. Shapiro (1997) “Smooth non-parametric receiver operating characteristic (ROC) curves for continuous diagnostic tests”. <i>Statistics in Medicine</i> <b>18</b>, 2143–2156. DOI:&nbsp;<a href="http://dx.doi.org/10.1002/(SICI)1097-0258(19971015)16:19%3C2143::AID-SIM655%3E3.0.CO%3B2-3">10.1002/(SICI)1097-0258(19971015)16:19&lt;2143::AID-SIM655&gt;3.0.CO;2-3</a>; PMID:&nbsp;<a href="http://www.ncbi.nlm.nih.gov/pubmed/9330425 ">9330425 </a>.</li>
-</ul>
+<script>
+function toggleVersions() {
+    const olderVersions = document.getElementById('older-versions');
+    const button = event.target;
+    
+    olderVersions.classList.remove('hidden');
+    button.style.display = 'none';
+}
+</script>
+
 </body>
 </html>
