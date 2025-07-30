@@ -69,7 +69,6 @@
             <div class="screenshot-card">
                 <img src="images/pAUC.png" alt="Partial AUC (pAUC)" class="screenshot-image">
                 <div class="screenshot-content">
-                    <h3>Partial AUC (pAUC)</h3>
                     <button class="btn btn-outline toggle-code" onclick="toggleShowCode('pROC_pAUC')">Show/hide code</button>
                     <pre id="pROC_pAUC" class="code-block">
 library(pROC)
@@ -98,7 +97,6 @@ plot.roc(aSAH$outcome, aSAH$s100b,
             <div class="screenshot-card">
                 <img src="images/CI.png" alt="Confidence intervals" class="screenshot-image">
                 <div class="screenshot-content">
-                    <h3>Confidence intervals</h3>
                     <button class="btn btn-outline toggle-code" onclick="toggleShowCode('pROC_CI')">Show/hide code</button>
                     <pre id="pROC_CI" class="code-block">
 library(pROC)
@@ -119,7 +117,6 @@ plot(ci(rocobj, of="thresholds", thresholds="best")) # add one threshold
             <div class="screenshot-card">
                 <img src="images/smoothing.png" alt="Smoothing" class="screenshot-image">
                 <div class="screenshot-content">
-                    <h3>Smoothing</h3>
                     <button class="btn btn-outline toggle-code" onclick="toggleShowCode('pROC_smoothing')">Show/hide code</button>
                     <pre id="pROC_smoothing" class="code-block">
 library(pROC)
@@ -141,7 +138,6 @@ legend("bottomright", legend = c("Empirical", "Binormal", "Density", "Fitdistr\n
             <div class="screenshot-card">
                 <img src="images/CI.sesp.png" alt="Confidence intervals of specificity/sensitivity" class="screenshot-image">
                 <div class="screenshot-content">
-                    <h3>Confidence intervals of specificity/sensitivity</h3>
                     <button class="btn btn-outline toggle-code" onclick="toggleShowCode('pROC_CI.sesp')">Show/hide code</button>
                     <pre id="pROC_CI.sesp" class="code-block">
 library(pROC)
@@ -161,7 +157,6 @@ plot(ci.sp(rocobj, sensitivities=seq(0, 100, 5)), # ci of specificity
             <div class="screenshot-card">
                 <img src="images/CI.thres.png" alt="Confidence interval of a threshold" class="screenshot-image">
                 <div class="screenshot-content">
-                    <h3>Confidence interval of a threshold</h3>
                     <button class="btn btn-outline toggle-code" onclick="toggleShowCode('pROC_CI.thres')">Show/hide code</button>
                     <pre id="pROC_CI.thres" class="code-block">
 library(pROC)
@@ -179,7 +174,6 @@ plot.roc(aSAH$outcome, aSAH$s100b,
             <div class="screenshot-card">
                 <img src="images/comparison.png" alt="Comparison" class="screenshot-image">
                 <div class="screenshot-content">
-                    <h3>Statistical comparison</h3>
                     <button class="btn btn-outline toggle-code" onclick="toggleShowCode('pROC_comparison')">Show/hide code</button>
                     <pre id="pROC_comparison" class="code-block">
 library(pROC)
