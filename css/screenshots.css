@@ -15,11 +15,13 @@
     border-radius: var(--radius-lg);
     overflow: hidden;
     transition: all 0.2s ease;
+    cursor: pointer;
 }
 
-.screenshot-card:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
+/* Make button appear active when hovering over the card */
+.screenshot-card:hover .toggle-code {
+    background-color: var(--primary-color);
+    color: white;
 }
 
 .screenshot-image {
@@ -35,7 +37,6 @@
 .screenshot-content h3 {
     margin-top: 0;
     margin-bottom: 1rem;
-    color: var(--primary-color);
     font-size: 1.25rem;
 }
 
@@ -43,6 +44,12 @@
     margin-bottom: 1rem;
     font-size: 0.9rem;
     padding: 0.5rem 1rem;
+    /* Remove focus outline to prevent double outline */
+    outline: none !important;
+}
+
+.toggle-code:focus {
+    outline: none !important;
 }
 
 .code-block {

@@ -31,6 +31,27 @@
             preElt.style.display = "none";
         }
     }
+
+    // Add event listeners when DOM is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        var cards = document.querySelectorAll('.screenshot-card');
+        
+        cards.forEach(function(card) {
+            var button = card.querySelector('.toggle-code');
+            var preElement = card.querySelector('.code-block');
+            
+            if (button && preElement) {
+                // Make entire card clickable to toggle button
+                card.addEventListener('click', function(e) {
+                    // Don't trigger if clicking the button itself
+                    if (e.target !== button) {
+                        e.preventDefault();
+                        button.click();
+                    }
+                });
+            }
+        });
+    });
     --></script>
 </head>
 
