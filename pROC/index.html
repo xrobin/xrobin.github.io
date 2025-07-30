@@ -116,6 +116,30 @@
         <div class="version-timeline">
             <div class="version-entry">
                 <div class="version-header">
+                    <h3>1.19.0 (2025-07-30)</h3>
+                    <div class="version-links">
+                        <a href="https://cran.r-project.org/src/contrib/pROC_1.19.9.tar.gz">
+                            <img src="../images/download.svg" alt="Download" class="download-icon">
+                            R
+                        </a>
+                        <a href="https://xavier.robin.name/en/blog/proc-1.19.0"><img src="../images/document.svg" alt="Document" class="document-icon"> release notes</a>
+                    </div>
+                </div>
+                <ul>
+                    <li><code>ci.coords</code> can now take the same <code>input</code> values as <code>coords</code> (<a href="https://github.com/xrobin/pROC/issues/90">issue #90</a>)</li>
+                    <li><code>ci.coords</code> can be <code>plot</code>ted</li>
+                    <li>Added "lr_pos" and "lr_neg" to <code>coords</code> (<a href="https://github.com/xrobin/pROC/issues/102">issue #102</a>)</li>
+                    <li><code>coords</code> with partial.auc now interpolates bounds when needed</li>
+                    <li>Added <code>ignore.partial.auc</code> argument to <code>coords</code></li>
+                    <li>Deprecated <code>transpose</code>, <code>as.list</code>, <code>as.matrix</code> and <code>drop</code> in <code>coords</code></li>
+                    <li>Deprecated the <code>algorithm</code> argument to <code>roc</code> and <code>fun.sesp</code> value</li>
+                    <li>Deprecated the <code>progress</code> and <code>parallel</code> argument for bootstrap operations.</li>
+                    <li>Removed dependencies on <a href="https://cran.r-project.org/web/packages/doParallel/index.html">doParallel</a> and retired package <a href="http://had.co.nz/plyr/">plyr</a> (thanks to Michael Chirico, <a href="https://github.com/xrobin/pROC/pull/134">pr #134</a>, <a href="https://github.com/xrobin/pROC/pull/135">#135</a>, <a href="https://github.com/xrobin/pROC/pull/136">#136</a>, <a href="https://github.com/xrobin/pROC/pull/137">#137</a>, <a href="https://github.com/xrobin/pROC/pull/138">#138</a>, <a href="https://github.com/xrobin/pROC/pull/139">#139</a> and <a href="https://github.com/xrobin/pROC/pull/140">#140</a>).</li>
+                </ul>
+            </div>
+
+            <div class="version-entry">
+                <div class="version-header">
                     <h3>1.18.5 (2023-07-04)</h3>
                     <div class="version-links">
                         <a href="https://cran.r-project.org/src/contrib/pROC_1.18.5.tar.gz">
