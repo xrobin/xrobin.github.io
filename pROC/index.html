@@ -495,7 +495,7 @@
                             <li>Deprecate dangerous use of a matrix as response / predictor with a warning</li>
                             <li>Forward <code>best.method</code> and <code>best.weights</code> arguments to <code>coords</code> in <code>ci.thresholds</code></li>
                             <li>Fix CITATION file as per CRAN request</li>
-                            <li>pAUC correction is undefined for partial AUC below the diagonal (result < 0.5) and now returns NA (with a warning). Thanks Vincenzo Lagani for the report.</li>
+                            <li>pAUC correction is undefined for partial AUC below the diagonal (result &lt; 0.5) and now returns NA (with a warning). Thanks Vincenzo Lagani for the report.</li>
                         </ul>
                     </div>
 
@@ -601,7 +601,7 @@
                             <li>New <code>ci.coords</code> function to compute CI of arbitrary coords.</li>
                             <li><code>coords</code> accepts new <code>ret</code> value "1-accuracy".</li>
                             <li>Introducing various algorithms to compute sensitivities and specificites, with a more vectorized code or Rcpp. See <code>algorithm</code> in <code>?roc</code> for more details on the trade-offs of the different methods.</li>
-                            <li>Faster algorithm for DeLong <code>roc.test</code>, <code>ci</code>, <code>var</code> and </code>cov</code> function (thanks Kazuki Yoshida).</li>
+                            <li>Faster algorithm for DeLong <code>roc.test</code>, <code>ci</code>, <code>var</code> and <code>cov</code> function (thanks Kazuki Yoshida).</li>
                             <li><code>are.paired</code> now also checks for identical <code>levels</code>.</li>
                             <li>Fixed a warning generated in the examples.</li>
                             <li>Fixed several bugs related with <code>smooth.roc</code> curves.</li>
@@ -821,7 +821,7 @@
                         <ul>
                             <li><code>print.auc</code> printed incorrect CI in <code>plot.roc</code> (thanks to Alexander B. Leichtle for the report).</li>
                             <li>Failed to detect local maximas in <code>coords</code> when 2 or less points were selected.</li>
-                            <li>Don't consider ROC extremities (+-Inf at 1.0/0.0 SE<->SP) as local maximas.</li>
+                            <li>Don't consider ROC extremities (+-Inf at 1.0/0.0 SE&lt;-&gt;SP) as local maximas.</li>
                         </ul>
                     </div>
 
@@ -962,13 +962,13 @@
     <section class="references-section">
         <h2 id="pROC_references">References</h2>
         <ul class="references-list">
-            <li>James Carpenter and John Bithell (2000) "Bootstrap condence intervals: when, which, what? A practical guide for medical statisticians". <i>Statistics in Medicine</i> <b>19</b>, 1141–1164. DOI:&nbsp;<a href="http://dx.doi.org/10.1002/(SICI)1097-0258(20000515)19:9%3C1141::AID-SIM479%3E3.0.CO%3B2-F">10.1002/(SICI)1097-0258(20000515)19:9<1141::AID-SIM479>3.0.CO;2-F</a>; PMID:&nbsp;<a href="http://www.ncbi.nlm.nih.gov/pubmed/10797513">10797513</a>.</li>
+            <li>James Carpenter and John Bithell (2000) "Bootstrap condence intervals: when, which, what? A practical guide for medical statisticians". <i>Statistics in Medicine</i> <b>19</b>, 1141–1164. DOI:&nbsp;<a href="http://dx.doi.org/10.1002/(SICI)1097-0258(20000515)19:9%3C1141::AID-SIM479%3E3.0.CO%3B2-F">10.1002/(SICI)1097-0258(20000515)19:9&lt;1141::AID-SIM479&gt;3.0.CO;2-F</a>; PMID:&nbsp;<a href="http://www.ncbi.nlm.nih.gov/pubmed/10797513">10797513</a>.</li>
             <li>Elisabeth R. DeLong, David M. DeLong and Daniel L. Clarke-Pearson (1988) "Comparing the areas under two or more correlated receiver operating characteristic curves: a nonparametric approach". <i>Biometrics</i> <b>44</b>, 837–845. JSTOR:&nbsp;<a href="http://www.jstor.org/stable/info/2531595">2531595</a>; PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/3203132">3203132</a>.</li>
             <li>Lutz Duembgen, Kaspar Rufibach (2011) "logcondens: Computations Related to Univariate Log-Concave Density Estimation". <i>Journal of Statistical Software</i>, <b>39</b>, 1–28. URL: <a href="http://www.jstatsoft.org/v39/i06/">jstatsoft.org/v39/i06</a>.</li> 
             <li>Tom Fawcett (2006) "An introduction to ROC analysis". <i>Pattern Recognition Letters</i> <b>27</b>, 861–874. DOI:&nbsp;<a href="http://dx.doi.org/10.1016/j.patrec.2005.10.010">j.patrec.2005.10.010</a>.</li>
             <li>James E. Hanley (1988) "The robustness of the "binormal" assumptions used in fitting ROC curves". <i>Medical Decision Making</i> <b>8</b>, 197–203. DOI:&nbsp;<a href="http://dx.doi.org/10.1177/0272989X8800800308">10.1177/0272989X8800800308</a>; PMID:&nbsp;<a href="http://www.ncbi.nlm.nih.gov/pubmed/3398748">3398748</a>.</li>
             <li>Donna Katzman McClish (1989) "Analyzing a Portion of the ROC Curve". <i>Medical Decision Making</i> <b>9</b>, 190–195. DOI:&nbsp;<a href="http://dx.doi.org/10.1177/0272989X8900900307">10.1177/0272989X8900900307</a>; PMID:&nbsp;<a href="http://www.ncbi.nlm.nih.gov/pubmed/2668680">2668680</a>.</li>
-            <li>Nancy A. Obuchowski and Donna K. McClish (1997) "Sample size determination for diagnostic accurary studies involving binormal ROC curve indices". <i>Statistics in Medicine</i>, <b>16</b>, 1529–1542. DOI: <a href="http://dx.doi.org/10.1002/(SICI)1097-0258(19970715)16:13&lt;1529::AID-SIM565&gt;3.0.CO;2-H">10.1002/(SICI)1097-0258(19970715)16:13&lt;1529::AID-SIM565&gt;3.0.CO;2-H</a>.</li>
+            <li>Nancy A. Obuchowski and Donna K. McClish (1997) "Sample size determination for diagnostic accurary studies involving binormal ROC curve indices". <i>Statistics in Medicine</i>, <b>16</b>, 1529–1542. DOI: <a href="http://dx.doi.org/10.1002/(SICI)1097-0258(19970715)16:13%3C1529::AID-SIM565%3E3.0.CO;2-H">10.1002/(SICI)1097-0258(19970715)16:13&lt;1529::AID-SIM565&gt;3.0.CO;2-H</a>.</li>
             <li>Nancy A. Obuchowski, Micharl L. Lieber and Frank H. Wians Jr. (2004) "ROC Curves in Clinical Chemistry: Uses, Misuses, and Possible Solutions". <i>Clinical Chemistry</i>, <b>50</b>, 1118–1125. DOI: <a href="http://dx.doi.org/10.1373/clinchem.2004.031823">10.1373/clinchem.2004.031823</a>.</li>
             <li>Margaret Pepe, Gary Longton and Holly Janes (2009) "Estimation and Comparison of Receiver Operating Characteristic Curves". <i>The Stata journal</i> <b>9</b>, 1. PMID:&nbsp;<a href="http://www.ncbi.nlm.nih.gov/pubmed/20161343">20161343</a>.</li>
             <li>Xavier Robin, Natacha Turck <i>et al.</i> (2011) "pROC: an open-source package for R and S+ to analyze and compare ROC curves". <i>BMC Bioinformatics</i>, <b>12</b>, 77. DOI: <a href="http://dx.doi.org/10.1186/1471-2105-12-77">10.1186/1471-2105-12-77</a>.</li>
