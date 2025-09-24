@@ -53,10 +53,41 @@ body {
     border-bottom: 1px solid var(--border-color);
 }
 
+.hero .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.hero-content {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.hero-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid var(--border-color);
+    box-shadow: var(--shadow-md);
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+.hero-text {
+    position: relative;
+    text-align: center;
+    width: 100%;
+}
+
 .hero h1 {
     font-size: 2.5rem;
     font-weight: 700;
-    margin: 0 0 1rem 0;
+    margin: 0;
     line-height: 1.2;
     color: var(--text-primary);
 }
@@ -413,6 +444,13 @@ button:focus,
 
 /* Responsive design */
 @media (max-width: 768px) {
+    .hero-avatar {
+        position: static;
+        display: block;
+        margin: 0 auto 1.5rem auto;
+        transform: none;
+    }
+
     .hero h1 {
         font-size: 2rem;
     }
