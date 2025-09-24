@@ -4,8 +4,9 @@
 .landing-section {
     margin: 3rem 0;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
+    gap: 3rem;
     min-height: 60vh;
 }
 
@@ -15,8 +16,9 @@
     border-radius: var(--radius-lg);
     overflow: hidden;
     transition: all 0.3s ease;
-    max-width: 600px;
-    width: 100%;
+    width: calc(50% - 1.5rem);
+    min-width: 300px;
+    max-width: 500px;
 }
 
 .landing-card:hover .landing-link {
@@ -62,6 +64,39 @@
 .landing-card:hover .landing-button .btn {
     background-color: var(--primary-color);
     color: white;
+}
+
+/* Social links styles */
+.social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.social-link {
+    color: var(--text-primary);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem;
+    transition: all 0.2s ease;
+    font-size: 0.95rem;
+}
+
+.social-link:hover {
+    color: var(--primary-color);
+}
+
+.social-icon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    fill: currentColor;
 }
 
 /* Responsive design for landing page */
