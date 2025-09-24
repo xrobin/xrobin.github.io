@@ -9,6 +9,31 @@
     left: -60px;
 }
 
+/* Avatar link styles */
+.hero-content a:has(.hero-avatar) {
+    position: absolute;
+    left: -60px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+}
+
+.hero-content a:has(.hero-avatar) {
+    outline: none;
+}
+
+.hero-content a:has(.hero-avatar):focus .hero-avatar {
+    box-shadow: var(--shadow-lg);
+}
+
+.hero-avatar {
+    display: block;
+    position: static;
+    left: auto;
+    top: auto;
+    transform: none;
+}
+
 /* Package info grid */
 .info-grid {
     display: grid;
