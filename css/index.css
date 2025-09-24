@@ -1,5 +1,6 @@
-/* Landing page specific styles */
+@import 'common.css';
 
+/* Landing page specific styles */
 .landing-section {
     margin: 3rem 0;
     display: flex;
