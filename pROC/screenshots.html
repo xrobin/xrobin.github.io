@@ -98,6 +98,14 @@
                         button.click();
                     }
                 });
+                
+                // Handle keyboard events (Enter and Space)
+                card.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        button.click();
+                    }
+                });
             }
         });
     });
