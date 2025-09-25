@@ -141,6 +141,13 @@
     filter: brightness(0) saturate(100%) invert(35%) sepia(85%) saturate(2000%) hue-rotate(210deg) brightness(90%) contrast(100%);
 }
 
+.github-icon,
+.gpl-icon {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+}
+
 .version-links a:hover {
     background-color: var(--primary-color);
     color: white;
