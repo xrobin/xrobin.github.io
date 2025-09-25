@@ -3,10 +3,11 @@
 /* Landing page specific styles */
 .landing-section {
     margin: 3rem 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 3rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+    margin: 2rem auto;
+    max-width: 1200px;
     min-height: 60vh;
 }
 
@@ -16,9 +17,6 @@
     border-radius: var(--radius-lg);
     overflow: hidden;
     transition: all 0.3s ease;
-    width: calc(50% - 1.5rem);
-    min-width: 300px;
-    max-width: 500px;
 }
 
 .landing-card:hover .landing-link {
@@ -100,7 +98,7 @@
 }
 
 /* Responsive design for landing page */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .landing-section {
         min-height: 50vh;
         margin: 2rem 0;
@@ -116,5 +114,22 @@
     
     .landing-content p {
         font-size: 1rem;
+    }
+    
+    /* Override avatar positioning for responsive layout */
+    .hero-avatar {
+        position: static !important;
+        display: block !important;
+        margin: 0 auto 1.5rem auto !important;
+        transform: none !important;
+        left: auto !important;
+        top: auto !important;
+    }
+    
+    .hero-content a:has(.hero-avatar) {
+        position: static !important;
+        left: auto !important;
+        top: auto !important;
+        transform: none !important;
     }
 } 
