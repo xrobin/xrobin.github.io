@@ -122,10 +122,10 @@
     <main class="container">
         <div id="pROC_screenshots" class="screenshots-grid">
 
-            <div class="screenshot-card">
+            <div class="screenshot-card" tabindex="0" role="button" aria-label="Toggle code for Partial AUC (pAUC)">
                 <img src="images/pAUC.png" alt="Partial AUC (pAUC)" class="screenshot-image">
                 <div class="screenshot-content">
-                    <button class="btn btn-outline toggle-code" onclick="toggleShowCode('pROC_pAUC')">Show/hide code</button>
+                    <button class="btn btn-outline toggle-code" tabindex="-1" onclick="toggleShowCode('pROC_pAUC')">Show/hide code</button>
                     <pre id="pROC_pAUC" class="code-block">
 <button class="copy-button" onclick="copyCodeToClipboard('pROC_pAUC', event)" title="Copy code">
     <svg class="copy-icon" viewBox="0 0 24 24" fill="currentColor">
@@ -153,10 +153,10 @@ plot.roc(aSAH$outcome, aSAH$s100b,
                 </div>
             </div>
 
-            <div class="screenshot-card">
+            <div class="screenshot-card" tabindex="0" role="button" aria-label="Toggle code for Confidence intervals">
                 <img src="images/CI.png" alt="Confidence intervals" class="screenshot-image">
                 <div class="screenshot-content">
-                    <button class="btn btn-outline toggle-code" onclick="toggleShowCode('pROC_CI')">Show/hide code</button>
+                    <button class="btn btn-outline toggle-code" tabindex="-1" onclick="toggleShowCode('pROC_CI')">Show/hide code</button>
                     <pre id="pROC_CI" class="code-block">
 <button class="copy-button" onclick="copyCodeToClipboard('pROC_CI', event)" title="Copy code">
     <svg class="copy-icon" viewBox="0 0 24 24" fill="currentColor">
@@ -176,10 +176,10 @@ plot(ci(rocobj, of="thresholds", thresholds="best")) # add one threshold</pre>
                 </div>
             </div>
 
-            <div class="screenshot-card">
+            <div class="screenshot-card" tabindex="0" role="button" aria-label="Toggle code for Smoothing">
                 <img src="images/smoothing.png" alt="Smoothing" class="screenshot-image">
                 <div class="screenshot-content">
-                    <button class="btn btn-outline toggle-code" onclick="toggleShowCode('pROC_smoothing')">Show/hide code</button>
+                    <button class="btn btn-outline toggle-code" tabindex="-1" onclick="toggleShowCode('pROC_smoothing')">Show/hide code</button>
                     <pre id="pROC_smoothing" class="code-block">
 <button class="copy-button" onclick="copyCodeToClipboard('pROC_smoothing', event)" title="Copy code">
     <svg class="copy-icon" viewBox="0 0 24 24" fill="currentColor">
@@ -200,10 +200,10 @@ legend("bottomright", legend = c("Empirical", "Binormal", "Density", "Fitdistr\n
                 </div>
             </div>
 
-            <div class="screenshot-card">
+            <div class="screenshot-card" tabindex="0" role="button" aria-label="Toggle code for Confidence intervals of specificity/sensitivity">
                 <img src="images/CI.sesp.png" alt="Confidence intervals of specificity/sensitivity" class="screenshot-image">
                 <div class="screenshot-content">
-                    <button class="btn btn-outline toggle-code" onclick="toggleShowCode('pROC_CI.sesp')">Show/hide code</button>
+                    <button class="btn btn-outline toggle-code" tabindex="-1" onclick="toggleShowCode('pROC_CI.sesp')">Show/hide code</button>
                     <pre id="pROC_CI.sesp" class="code-block">
 <button class="copy-button" onclick="copyCodeToClipboard('pROC_CI.sesp', event)" title="Copy code">
     <svg class="copy-icon" viewBox="0 0 24 24" fill="currentColor">
@@ -222,10 +222,10 @@ plot(ci.sp(rocobj, sensitivities=seq(0, 100, 5)), # ci of specificity
                 </div>
             </div>
 
-            <div class="screenshot-card">
+            <div class="screenshot-card" tabindex="0" role="button" aria-label="Toggle code for Confidence interval of a threshold">
                 <img src="images/CI.thres.png" alt="Confidence interval of a threshold" class="screenshot-image">
                 <div class="screenshot-content">
-                    <button class="btn btn-outline toggle-code" onclick="toggleShowCode('pROC_CI.thres')">Show/hide code</button>
+                    <button class="btn btn-outline toggle-code" tabindex="-1" onclick="toggleShowCode('pROC_CI.thres')">Show/hide code</button>
                     <pre id="pROC_CI.thres" class="code-block">
 <button class="copy-button" onclick="copyCodeToClipboard('pROC_CI.thres', event)" title="Copy code">
     <svg class="copy-icon" viewBox="0 0 24 24" fill="currentColor">
@@ -242,10 +242,10 @@ plot.roc(aSAH$outcome, aSAH$s100b,
                 </div>
             </div>
 
-            <div class="screenshot-card">
+            <div class="screenshot-card" tabindex="0" role="button" aria-label="Toggle code for Comparison">
                 <img src="images/comparison.png" alt="Comparison" class="screenshot-image">
                 <div class="screenshot-content">
-                    <button class="btn btn-outline toggle-code" onclick="toggleShowCode('pROC_comparison')">Show/hide code</button>
+                    <button class="btn btn-outline toggle-code" tabindex="-1" onclick="toggleShowCode('pROC_comparison')">Show/hide code</button>
                     <pre id="pROC_comparison" class="code-block">
 <button class="copy-button" onclick="copyCodeToClipboard('pROC_comparison', event)" title="Copy code">
     <svg class="copy-icon" viewBox="0 0 24 24" fill="currentColor">

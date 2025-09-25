@@ -24,6 +24,17 @@
     color: white;
 }
 
+/* Focus styles for screenshot cards */
+.screenshot-card:focus {
+    outline: none;
+}
+
+.screenshot-card:focus .toggle-code {
+    background-color: var(--primary-color);
+    color: white;
+    box-shadow: 0 0 0 2px var(--primary-color);
+}
+
 .screenshot-image {
     width: 100%;
     height: auto;
