@@ -29,6 +29,16 @@
     display: block;
 }
 
+.landing-link:focus {
+    outline: none;
+}
+
+.landing-link:focus .btn {
+    background-color: var(--primary-color);
+    color: white;
+    box-shadow: 0 0 0 2px var(--primary-color);
+}
+
 .landing-content {
     position: relative;
     text-align: center;
@@ -61,6 +71,14 @@
 
 .landing-card:hover .landing-button .btn {
     background-color: var(--primary-color);
+    color: white;
+}
+
+/* Custom focus style for landing card buttons - maintain accessibility */
+.landing-card .btn:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+background-color: var(--prima   ry-color);
     color: white;
 }
 

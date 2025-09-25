@@ -271,6 +271,23 @@ code {
     margin-bottom: 0;
 }
 
+/* Screenshot link focus styles */
+.screenshot-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.screenshot-link:focus {
+    outline: none;
+}
+
+.screenshot-link:focus .btn {
+    background-color: var(--primary-color);
+    color: white;
+    box-shadow: 0 0 0 2px var(--primary-color);
+}
+
 /* Responsive design */
 @media (max-width: 1024px) {
     .info-grid {
