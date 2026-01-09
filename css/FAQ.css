@@ -1,0 +1,73 @@
+/* FAQ-specific styles for info-card (not in grid) */
+section > .info-card {
+    margin-bottom: 2rem;
+}
+
+section > .info-card h3 {
+    text-align: left;
+    font-size: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.info-card blockquote {
+    background-color: var(--bg-tertiary);
+    border-left: 4px solid var(--primary-color);
+    padding: 1rem 1.5rem;
+    margin: 1.5rem 0;
+    border-radius: var(--radius-sm);
+    font-style: italic;
+}
+
+.info-card blockquote p {
+    margin-bottom: 0.5rem;
+}
+
+.info-card blockquote p:last-child {
+    margin-bottom: 0;
+}
+
+/* Package table */
+.package-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+.package-table thead {
+    background-color: var(--bg-secondary);
+}
+
+.package-table th {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-weight: 600;
+    color: var(--text-primary);
+    border-bottom: 2px solid var(--border-color);
+}
+
+.package-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-secondary);
+}
+
+.package-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.package-table tbody tr:hover {
+    background-color: var(--bg-secondary);
+}
+
+/* Print styles */
+@media print {
+    section > .info-card {
+        border: 1px solid #ccc !important;
+        background: white !important;
+    }
+}
