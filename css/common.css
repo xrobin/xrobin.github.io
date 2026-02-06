@@ -70,6 +70,29 @@ body {
     z-index: 1;
 }
 
+/* When avatar is wrapped in a link, position the link instead */
+.hero-content a:has(.hero-avatar) {
+    position: absolute;
+    left: -30px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    outline: none;
+}
+
+.hero-content a:has(.hero-avatar):focus .hero-avatar {
+    box-shadow: var(--shadow-lg);
+}
+
+/* When inside a link, avatar doesn't need its own positioning */
+.hero-content a .hero-avatar {
+    position: static;
+    left: auto;
+    top: auto;
+    transform: none;
+    display: block;
+}
+
 .hero-text {
     position: relative;
     text-align: center;
@@ -180,6 +203,13 @@ button:focus,
         position: static;
         display: block;
         margin: 0 auto 1.5rem auto;
+        transform: none;
+    }
+
+    .hero-content a:has(.hero-avatar) {
+        position: static;
+        left: auto;
+        top: auto;
         transform: none;
     }
 }

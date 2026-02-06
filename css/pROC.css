@@ -2,31 +2,6 @@
 
 /* pROC-specific styles */
 
-/* Avatar link styles */
-.hero-content a:has(.hero-avatar) {
-    position: absolute;
-    left: -30px;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 2;
-}
-
-.hero-content a:has(.hero-avatar) {
-    outline: none;
-}
-
-.hero-content a:has(.hero-avatar):focus .hero-avatar {
-    box-shadow: var(--shadow-lg);
-}
-
-.hero-avatar {
-    display: block;
-    position: static;
-    left: auto;
-    top: auto;
-    transform: none;
-}
-
 /* Package info grid */
 .info-grid {
     display: grid;
@@ -308,23 +283,6 @@ code {
     .info-card,
     .version-entry {
         padding: 1rem;
-    }
-    
-    /* Override pROC-specific avatar positioning for responsive layout */
-    .hero-avatar {
-        position: static !important;
-        display: block !important;
-        margin: 0 auto 1.5rem auto !important;
-        transform: none !important;
-        left: auto !important;
-        top: auto !important;
-    }
-    
-    .hero-content a:has(.hero-avatar) {
-        position: static !important;
-        left: auto !important;
-        top: auto !important;
-        transform: none !important;
     }
 }
 
