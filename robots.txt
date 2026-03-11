@@ -1,1 +1,1 @@
-Sitemap: https://xrobin.github.io/sitemap.txt
+Sitemap: https://xrobin.github.io/sitemap.xml
